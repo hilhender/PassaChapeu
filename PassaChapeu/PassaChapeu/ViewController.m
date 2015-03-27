@@ -46,8 +46,13 @@
 //New event
 
 
-/* O MAIOR PROBLEMA EH MANTER A COERENCIA DE DADOS (BASE DE DADOS E O QUE ESTÁ SENDO EXIBIDO NA TELA!). */
-/* SE EU ADIOCIONAR NOVO GASTO OU PARTICIPANTE, PRECISO RECARREGAR A TELA???? */
+ O MAIOR PROBLEMA EH MANTER A COERENCIA DE DADOS (BASE DE DADOS E O QUE ESTÁ SENDO EXIBIDO NA TELA!).
+ SE EU ADIOCIONAR NOVO GASTO OU PARTICIPANTE, PRECISO RECARREGAR A TELA???? 
+ Pensei em um pickerview que possui inicialmente o usuário inicial(VOCÊ) adicionado no pickerview
+ ele deve escrever o nome de um novo usuário e tecla o símbolo mais, assim a barra de rolagem adiciona este 
+ posicionando o nome no pickerview. Agora se quiser apagar basta deletar com o botão menos, caso queira adiconar basta colocar mais 
+ um e continuar adiconando. Caso tenha terminado basta colocar confirmar(botão)
+ */
 
 
 @end
