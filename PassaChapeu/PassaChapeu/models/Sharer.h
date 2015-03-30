@@ -11,8 +11,17 @@
 
 @interface Sharer : NSObject
 
+
+@property int uniqueID;
+
 @property NSString* name;
 @property NSMutableArray* expenses;
+
++ (int) getUniqueIDAssigner;
+
++ (void) uniqueIDAssignerIncrement;
+
++ (void) setUniqueIDAssingerTo:(int) value;
 
 - (Sharer *) initWithName: (NSString*) newSharerName;
 

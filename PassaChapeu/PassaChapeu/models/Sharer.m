@@ -8,11 +8,33 @@
 
 #import "Sharer.h"
 
+
 @implementation Sharer
 
+static int uniqueIDAssigner;
+
+#pragma mark - static methods
+
++ (int) getUniqueIDAssigner{
+    return uniqueIDAssigner;
+}
+
++ (void) setUniqueIDAssingerTo:(int)value{
+    uniqueIDAssigner = value;
+}
+
++ (void) uniqueIDAssignerIncrement{
+    uniqueIDAssigner++;
+}
+
+#pragma mark - dinamic methods
 
 /* Constructor. */
 - (Sharer *) initWithName:(NSString *)newSharerName {
+    
+    self.uniqueID = [Sharer getUniqueIDAssigner];
+    [Sharer uniqueIDAssignerIncrement];
+    
     self.name = newSharerName;
     self.expenses = [NSMutableArray array];
     
@@ -21,7 +43,8 @@
 
 /* Adiciona gasto. */
 - (void) assignExpense: (Expense *) expense {
-    [self.expenses addObject:expense];
+    if(![self.expenses containsObject: expense])
+       [self.expenses addObject:expense];
 }
 
 /* Remove gasto. */

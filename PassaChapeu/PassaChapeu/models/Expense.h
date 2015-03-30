@@ -12,10 +12,17 @@
 
 
 @interface Expense : NSObject
-@property NSMutableArray* sharers;
 
+@property int uniqueID;
 @property NSString* name;
 @property float value;
+@property NSMutableArray* sharers;
+
++ (int) getUniqueIDAssigner;
+
++ (void) uniqueIDAssignerIncrement;
+
++ (void) setUniqueIDAssingerTo:(int) value;
 
 - (Expense *) initWithName: (NSString*)name andValue: (float) value;
 

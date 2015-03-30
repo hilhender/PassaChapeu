@@ -14,8 +14,12 @@
 
 @implementation Event
 
+
 /* Default constructor. */
 - (Event*) init{
+    [Sharer setUniqueIDAssingerTo:0];
+    [Expense setUniqueIDAssingerTo:0];
+    
     self.sharers = [NSMutableArray array];
     self.expenses = [NSMutableArray array];
 

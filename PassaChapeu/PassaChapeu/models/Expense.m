@@ -10,8 +10,29 @@
 
 @implementation Expense
 
+static int uniqueIDAssigner;
+
+#pragma mark - static methods
+
++ (int) getUniqueIDAssigner{
+    return uniqueIDAssigner;
+}
+
++ (void) uniqueIDAssignerIncrement{
+    uniqueIDAssigner++;
+}
+
++ (void) setUniqueIDAssingerTo:(int) value{
+    uniqueIDAssigner = value;
+}
+
+#pragma mark - dinamic methods
+
 /* Default Constructor. */
 - (Expense *) initWithName:(NSString *)name andValue:(float)value {
+    self.uniqueID = [Expense getUniqueIDAssigner];
+    [Expense uniqueIDAssignerIncrement];
+    
     self.name = name;
     self.value = value;
     self.sharers = [NSMutableArray array];
@@ -21,7 +42,8 @@
 
 /* Adiciona participante. */
 - (void) assignSharer : (Sharer *) sharer {
-    [self.sharers addObject:sharer];
+    if (![self.sharers containsObject:sharer])
+        [self.sharers addObject:sharer];
 }
 
 /* Remove Participante. */
