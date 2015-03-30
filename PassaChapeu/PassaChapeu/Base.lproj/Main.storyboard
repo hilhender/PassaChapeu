@@ -30,6 +30,7 @@
                         <viewControllerLayoutGuide type="bottom" id="3sX-hy-kOg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="FAS-bQ-o0o">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -65,6 +66,7 @@
                         <viewControllerLayoutGuide type="bottom" id="8HP-jW-bXv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OE3-3G-1ei">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -100,10 +102,13 @@
                         <viewControllerLayoutGuide type="bottom" id="DKG-7w-kSU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KGD-sC-svk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Histórico" id="9vc-DK-M6o"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nju-gs-Xyi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
