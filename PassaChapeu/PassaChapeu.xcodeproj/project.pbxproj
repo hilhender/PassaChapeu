@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EFC59BDD1ACAB89700F17FE4 /* HistoricoController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC59BDC1ACAB89700F17FE4 /* HistoricoController.m */; };
+		EF339C831ACAE5E5006A61DD /* EventoController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF339C821ACAE5E5006A61DD /* EventoController.m */; };
+		EF339C861ACAE765006A61DD /* ExpensesController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF339C851ACAE765006A61DD /* ExpensesController.m */; };
 		EFC59BE01ACAB8C500F17FE4 /* PagamentoController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC59BDF1ACAB8C500F17FE4 /* PagamentoController.m */; };
 		EFC59BE31ACAB8ED00F17FE4 /* ReciboController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC59BE21ACAB8ED00F17FE4 /* ReciboController.m */; };
+		EFC59BE61ACADD5800F17FE4 /* ExpenseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC59BE51ACADD5800F17FE4 /* ExpenseDetailViewController.m */; };
 		F74E51F71AC4470B00BB5497 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F74E51F61AC4470B00BB5497 /* main.m */; };
 		F74E51FA1AC4470C00BB5497 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F74E51F91AC4470C00BB5497 /* AppDelegate.m */; };
 		F74E51FD1AC4470C00BB5497 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F74E51FC1AC4470C00BB5497 /* ViewController.m */; };
@@ -34,12 +36,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EFC59BDB1ACAB89700F17FE4 /* HistoricoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoricoController.h; sourceTree = "<group>"; };
-		EFC59BDC1ACAB89700F17FE4 /* HistoricoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoricoController.m; sourceTree = "<group>"; };
+		EF339C811ACAE5E5006A61DD /* EventoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventoController.h; sourceTree = "<group>"; };
+		EF339C821ACAE5E5006A61DD /* EventoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventoController.m; sourceTree = "<group>"; };
+		EF339C841ACAE765006A61DD /* ExpensesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpensesController.h; sourceTree = "<group>"; };
+		EF339C851ACAE765006A61DD /* ExpensesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpensesController.m; sourceTree = "<group>"; };
 		EFC59BDE1ACAB8C500F17FE4 /* PagamentoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagamentoController.h; sourceTree = "<group>"; };
 		EFC59BDF1ACAB8C500F17FE4 /* PagamentoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagamentoController.m; sourceTree = "<group>"; };
 		EFC59BE11ACAB8ED00F17FE4 /* ReciboController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReciboController.h; sourceTree = "<group>"; };
 		EFC59BE21ACAB8ED00F17FE4 /* ReciboController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReciboController.m; sourceTree = "<group>"; };
+		EFC59BE41ACADD5800F17FE4 /* ExpenseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenseDetailViewController.h; sourceTree = "<group>"; };
+		EFC59BE51ACADD5800F17FE4 /* ExpenseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseDetailViewController.m; sourceTree = "<group>"; };
 		F74E51F11AC4470B00BB5497 /* PassaChapeu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PassaChapeu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F74E51F51AC4470B00BB5497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F74E51F61AC4470B00BB5497 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -114,11 +120,15 @@
 				EFC59BE21ACAB8ED00F17FE4 /* ReciboController.m */,
 				EFC59BDE1ACAB8C500F17FE4 /* PagamentoController.h */,
 				EFC59BDF1ACAB8C500F17FE4 /* PagamentoController.m */,
-				EFC59BDB1ACAB89700F17FE4 /* HistoricoController.h */,
-				EFC59BDC1ACAB89700F17FE4 /* HistoricoController.m */,
+				EF339C841ACAE765006A61DD /* ExpensesController.h */,
+				EF339C851ACAE765006A61DD /* ExpensesController.m */,
+				EF339C811ACAE5E5006A61DD /* EventoController.h */,
+				EF339C821ACAE5E5006A61DD /* EventoController.m */,
 				F74E52011AC4470C00BB5497 /* Images.xcassets */,
 				F74E52031AC4470C00BB5497 /* LaunchScreen.xib */,
 				F74E51F41AC4470B00BB5497 /* Supporting Files */,
+				EFC59BE41ACADD5800F17FE4 /* ExpenseDetailViewController.h */,
+				EFC59BE51ACADD5800F17FE4 /* ExpenseDetailViewController.m */,
 			);
 			path = PassaChapeu;
 			sourceTree = "<group>";
@@ -263,16 +273,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFC59BDD1ACAB89700F17FE4 /* HistoricoController.m in Sources */,
 				F74E52251AC4482200BB5497 /* Event.m in Sources */,
 				F74E521F1AC447CF00BB5497 /* Sharer.m in Sources */,
+				EF339C861ACAE765006A61DD /* ExpensesController.m in Sources */,
 				EFC59BE31ACAB8ED00F17FE4 /* ReciboController.m in Sources */,
 				F74E51FD1AC4470C00BB5497 /* ViewController.m in Sources */,
 				F74E51FA1AC4470C00BB5497 /* AppDelegate.m in Sources */,
 				F74E52221AC4480800BB5497 /* Expense.m in Sources */,
 				EFC59BE01ACAB8C500F17FE4 /* PagamentoController.m in Sources */,
+				EFC59BE61ACADD5800F17FE4 /* ExpenseDetailViewController.m in Sources */,
 				F74E52281AC4485A00BB5497 /* Controller.m in Sources */,
 				F74E51F71AC4470B00BB5497 /* main.m in Sources */,
+				EF339C831ACAE5E5006A61DD /* EventoController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

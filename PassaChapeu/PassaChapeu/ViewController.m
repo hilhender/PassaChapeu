@@ -20,11 +20,6 @@
 - (void)viewDidLoad {
     self.controller = [[Controller alloc] init];
     
-    //teste do model
-    
-    
-    
-    
     
     
     [super viewDidLoad];

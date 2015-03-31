@@ -1,5 +1,5 @@
 //
-//  HistoricoController.h
+//  ExpenseDetailViewController.h
 //  PassaChapeu
 //
 //  Created by Andre Scherma Soleo on 31/03/15.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HistoricoController : UIViewController
+@interface ExpenseDetailViewController : UIViewController
+
+@property (nonatomic, strong) NSString *expense;
 
 @end
