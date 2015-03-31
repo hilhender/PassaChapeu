@@ -14,7 +14,9 @@
 
 @end
 
-@implementation EventsViewController
+@implementation EventsViewController {
+    NSMutableArray *_events;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,6 +46,33 @@
  numberOfRowsInSection:(NSInteger)section{
     
     return 5;
+}
+
+- (IBAction)newEvent:(id)sender {
+    /* Abrir uma caixa de texto pedindo nome do evento */
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Atenção" message:@"Insira o nome do evento:" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancelar", @"Cancel action") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        /* Implementa o botao cancelar. */
+        NSLog(@"Cancel action");
+    }];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        /* Implementa o botão OK. */
+        UITextField *eventName = alert.textFields.firstObject;
+        NSLog(@"%@", eventName.text);
+    }];
+    
+    [alert addAction:cancelAction];
+    [alert addAction:okAction];
+    
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = NSLocalizedString(@"Nome do Evento", @"EventName");
+    }];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
 }
 
 

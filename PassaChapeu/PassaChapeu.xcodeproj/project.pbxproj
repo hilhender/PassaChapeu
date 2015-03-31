@@ -13,7 +13,6 @@
 		EFC59BE61ACADD5800F17FE4 /* ExpenseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC59BE51ACADD5800F17FE4 /* ExpenseDetailViewController.m */; };
 		F74E51F71AC4470B00BB5497 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F74E51F61AC4470B00BB5497 /* main.m */; };
 		F74E51FA1AC4470C00BB5497 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F74E51F91AC4470C00BB5497 /* AppDelegate.m */; };
-		F74E51FD1AC4470C00BB5497 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F74E51FC1AC4470C00BB5497 /* ViewController.m */; };
 		F74E52001AC4470C00BB5497 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F74E51FE1AC4470C00BB5497 /* Main.storyboard */; };
 		F74E52021AC4470C00BB5497 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F74E52011AC4470C00BB5497 /* Images.xcassets */; };
 		F74E52051AC4470C00BB5497 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F74E52031AC4470C00BB5497 /* LaunchScreen.xib */; };
@@ -48,8 +47,6 @@
 		F74E51F61AC4470B00BB5497 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F74E51F81AC4470B00BB5497 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F74E51F91AC4470C00BB5497 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F74E51FB1AC4470C00BB5497 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F74E51FC1AC4470C00BB5497 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		F74E51FF1AC4470C00BB5497 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F74E52011AC4470C00BB5497 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F74E52041AC4470C00BB5497 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -91,8 +88,6 @@
 				EFC444221ACB08B000BEE364 /* BalancoViewController.m */,
 				EFC4441A1ACB06D400BEE364 /* EventsViewController.h */,
 				EFC4441B1ACB06D400BEE364 /* EventsViewController.m */,
-				F74E51FB1AC4470C00BB5497 /* ViewController.h */,
-				F74E51FC1AC4470C00BB5497 /* ViewController.m */,
 				EFC4441D1ACB07FD00BEE364 /* ExpensesViewController.h */,
 				EFC4441E1ACB07FD00BEE364 /* ExpensesViewController.m */,
 			);
@@ -278,7 +273,6 @@
 			files = (
 				F74E52251AC4482200BB5497 /* Event.m in Sources */,
 				F74E521F1AC447CF00BB5497 /* Sharer.m in Sources */,
-				F74E51FD1AC4470C00BB5497 /* ViewController.m in Sources */,
 				F74E51FA1AC4470C00BB5497 /* AppDelegate.m in Sources */,
 				F74E52221AC4480800BB5497 /* Expense.m in Sources */,
 				EFC59BE61ACADD5800F17FE4 /* ExpenseDetailViewController.m in Sources */,

@@ -36,7 +36,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SAQ-By-Dtz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-295.5" y="-1989.75"/>
+            <point key="canvasLocation" x="883.5" y="-540.75"/>
         </scene>
         <!--Eventos-->
         <scene sceneID="PJh-ZY-5w2">
@@ -97,14 +97,17 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Eventos" id="Hor-8G-tXn">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="du2-xK-CLz">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Xq2-wD-rtw">
+                    <navigationItem key="navigationItem" title="Eventos" id="Hvf-nR-1wj">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="m25-Ze-0T1">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PIB-Se-Uq1">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Novo">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="newEvent:" destination="t3v-Ig-Laz" eventType="touchUpInside" id="42T-ka-SMN"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
@@ -179,7 +182,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DPH-Al-VNS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="982.5" y="-1350"/>
+            <point key="canvasLocation" x="361.5" y="-1344"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="b2a-os-Gxy">
@@ -226,10 +229,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qdb-U7-Oim" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2223" y="-1344"/>
+            <point key="canvasLocation" x="1128" y="-1344"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="nEs-wn-IfF"/>
+        <segue reference="eaz-dd-amp"/>
     </inferredMetricsTieBreakers>
 </document>
