@@ -19,12 +19,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pgj-qp-DzS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4186.5" y="746.25"/>
+            <point key="canvasLocation" x="2378" y="602"/>
         </scene>
         <!--Recibo-->
         <scene sceneID="wyP-u0-xYb">
             <objects>
-                <viewController id="0JX-Ah-X90" sceneMemberID="viewController">
+                <viewController id="0JX-Ah-X90" customClass="ReciboController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mi3-Sy-K4B"/>
                         <viewControllerLayoutGuide type="bottom" id="3sX-hy-kOg"/>
@@ -38,7 +38,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8J2-bv-TqK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4977" y="746.25"/>
+            <point key="canvasLocation" x="3185" y="602"/>
         </scene>
         <!--Pagamento-->
         <scene sceneID="ipt-XX-i8N">
@@ -55,12 +55,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PV6-Qb-8Kj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4186.5" y="27.75"/>
+            <point key="canvasLocation" x="2378" y="-133"/>
         </scene>
         <!--Pagamento-->
         <scene sceneID="HMm-Oi-HaS">
             <objects>
-                <viewController id="nov-Gd-NtV" sceneMemberID="viewController">
+                <viewController id="nov-Gd-NtV" customClass="PagamentoController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rOW-Ts-Xyf"/>
                         <viewControllerLayoutGuide type="bottom" id="8HP-jW-bXv"/>
@@ -103,7 +103,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q9k-0w-jWa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4977" y="27"/>
+            <point key="canvasLocation" x="3185" y="-133"/>
         </scene>
         <!--Histórico-->
         <scene sceneID="wgO-rc-70Y">
@@ -120,12 +120,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mCw-d8-d8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4186.5" y="-668.25"/>
+            <point key="canvasLocation" x="2386" y="-901"/>
         </scene>
         <!--Histórico-->
         <scene sceneID="g9R-RM-rZV">
             <objects>
-                <viewController id="Aj8-bC-0nr" sceneMemberID="viewController">
+                <viewController id="Aj8-bC-0nr" customClass="HistoricoController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="o3N-TI-V3Z"/>
                         <viewControllerLayoutGuide type="bottom" id="DKG-7w-kSU"/>
@@ -157,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nju-gs-Xyi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4977" y="-669"/>
+            <point key="canvasLocation" x="3185" y="-901"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="zQ3-Ff-zZz">
