@@ -20,6 +20,23 @@
             </objects>
             <point key="canvasLocation" x="-1075.5" y="-1344"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="o43-k5-XnD">
+            <objects>
+                <viewController id="uUG-FZ-8S0" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GcW-iI-Dae"/>
+                        <viewControllerLayoutGuide type="bottom" id="pxm-ia-66m"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XXc-qM-CAU">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SAQ-By-Dtz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-295.5" y="-1989.75"/>
+        </scene>
         <!--Eventos-->
         <scene sceneID="PJh-ZY-5w2">
             <objects>
@@ -36,7 +53,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="tdP-OV-IaB" style="IBUITableViewCellStyleDefault" id="NNG-sg-mlU">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventCell" textLabel="tdP-OV-IaB" style="IBUITableViewCellStyleDefault" id="NNG-sg-mlU">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NNG-sg-mlU" id="6gJ-fk-qQZ">
@@ -77,15 +94,6 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Eventos" id="Hor-8G-tXn">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="k3c-ET-bKD">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gY1-s7-YT1">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Voltar">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="du2-xK-CLz">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Xq2-wD-rtw">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -93,7 +101,13 @@
                                 <state key="normal" title="Novo">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="uUG-FZ-8S0" kind="show" id="xtO-hd-ou6"/>
+                                </connections>
                             </button>
+                            <connections>
+                                <segue destination="ker-IL-lG1" kind="show" id="VC6-Iv-WLE"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -102,7 +116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aA1-Ox-qy3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-345" y="-1350"/>
+            <point key="canvasLocation" x="-352.5" y="-1344"/>
         </scene>
         <!--Gastos/Participantes-->
         <scene sceneID="Qze-j7-uSA">
@@ -115,7 +129,35 @@
                     <view key="view" contentMode="scaleToFill" id="P27-Gl-KsA">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="kAo-9x-krz">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="268" y="64" width="140" height="736"/>
+                                </variation>
+                            </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Q31-v1-his">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="64" width="260" height="736"/>
+                                </variation>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="kAo-9x-krz"/>
+                                <exclude reference="Q31-v1-his"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="kAo-9x-krz"/>
+                                <include reference="Q31-v1-his"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Gastos/Participantes" id="eg7-c6-dhn">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="7jf-kC-V1M">
@@ -127,23 +169,16 @@
                                 </state>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="kvr-Np-s5Q">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EW1-Od-cf0">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Recibo">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="gRg-aM-lFa" kind="show" id="uBl-7B-fLz"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Balanço" id="1N3-Pk-NQQ">
+                            <connections>
+                                <segue destination="gRg-aM-lFa" kind="showDetail" id="ATB-dA-7vp"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DPH-Al-VNS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="398" y="-1344"/>
+            <point key="canvasLocation" x="397.5" y="-1344"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="b2a-os-Gxy">
