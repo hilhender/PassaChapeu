@@ -10,4 +10,7 @@
 
 @interface ExpensesViewController : UIViewController
 
+@property (nonatomic, strong) IBOutlet UILabel *lblEventName;
+@property (nonatomic, strong) NSString *eventName;
+
 @end

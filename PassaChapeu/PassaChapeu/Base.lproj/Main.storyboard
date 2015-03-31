@@ -20,24 +20,6 @@
             </objects>
             <point key="canvasLocation" x="-1075.5" y="-1344"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="o43-k5-XnD">
-            <objects>
-                <viewController id="uUG-FZ-8S0" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="GcW-iI-Dae"/>
-                        <viewControllerLayoutGuide type="bottom" id="pxm-ia-66m"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="XXc-qM-CAU">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SAQ-By-Dtz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="883.5" y="-540.75"/>
-        </scene>
         <!--Eventos-->
         <scene sceneID="PJh-ZY-5w2">
             <objects>
@@ -72,7 +54,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="ker-IL-lG1" kind="show" id="qwW-L3-W7f"/>
+                                            <segue destination="ker-IL-lG1" kind="show" identifier="oldEvent" id="g5A-3j-9cE"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -106,13 +88,14 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="newEvent:" destination="t3v-Ig-Laz" eventType="touchUpInside" id="42T-ka-SMN"/>
+                                    <action selector="btnNovo:" destination="t3v-Ig-Laz" eventType="touchUpInside" id="iHA-PO-aXq"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="EventsTable" destination="EGj-Ws-79F" id="gwz-A8-MkZ"/>
+                        <segue destination="ker-IL-lG1" kind="show" identifier="newEvent" id="a9o-WD-sg0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aA1-Ox-qy3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -135,74 +118,65 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="268" y="64" width="140" height="736"/>
+                                    <rect key="frame" x="268" y="113" width="132" height="687"/>
                                 </variation>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Q31-v1-his">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="64" width="260" height="736"/>
+                                    <rect key="frame" x="0.0" y="113" width="260" height="687"/>
                                 </variation>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1Y-kD-zGh">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="201" y="72" width="42" height="21"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="kAo-9x-krz"/>
                                 <exclude reference="Q31-v1-his"/>
+                                <exclude reference="J1Y-kD-zGh"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="kAo-9x-krz"/>
                                 <include reference="Q31-v1-his"/>
+                                <include reference="J1Y-kD-zGh"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Gastos/Participantes" id="eg7-c6-dhn">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="7jf-kC-V1M">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mv7-V3-0kq">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="N5W-K3-Tva">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cup-dD-0Zk">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Voltar">
+                                <state key="normal" title="Recibo">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="gRg-aM-lFa" kind="show" identifier="receipt" id="blZ-6a-hCh"/>
+                                </connections>
                             </button>
-                            <connections>
-                                <segue destination="t3v-Ig-Laz" kind="show" id="nEs-wn-IfF"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Balanço" id="1N3-Pk-NQQ">
-                            <connections>
-                                <segue destination="gRg-aM-lFa" kind="showDetail" id="ATB-dA-7vp"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="lblEventName" destination="J1Y-kD-zGh" id="iXu-8A-QCP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DPH-Al-VNS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="361.5" y="-1344"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="b2a-os-Gxy">
-            <objects>
-                <viewController id="jGU-7t-X4L" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="keg-EF-c9N"/>
-                        <viewControllerLayoutGuide type="bottom" id="o2P-4R-ura"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5dQ-3j-7u1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P3k-bs-3Ra" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="84" y="-510"/>
-        </scene>
-        <!--Balanço-->
+        <!--Recibo-->
         <scene sceneID="RTY-at-aJE">
             <objects>
                 <viewController id="gRg-aM-lFa" customClass="BalancoViewController" sceneMemberID="viewController">
@@ -215,17 +189,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Balanço" id="Nqu-ek-M2v">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="T2g-dE-fZa">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Epp-Fh-5id">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Voltar">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Recibo" id="App-w9-WUR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qdb-U7-Oim" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -233,6 +197,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="eaz-dd-amp"/>
+        <segue reference="a9o-WD-sg0"/>
     </inferredMetricsTieBreakers>
 </document>

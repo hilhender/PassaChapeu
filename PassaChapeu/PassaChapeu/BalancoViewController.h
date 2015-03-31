@@ -10,4 +10,7 @@
 
 @interface BalancoViewController : UIViewController
 
+@property (nonatomic, strong) NSMutableArray* sharers;
+@property (nonatomic, strong) NSMutableArray* expenses;
+
 @end
