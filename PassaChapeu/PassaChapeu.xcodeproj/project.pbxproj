@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EFC4441C1ACB06D400BEE364 /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC4441B1ACB06D400BEE364 /* EventsViewController.m */; };
+		EFC4441F1ACB07FD00BEE364 /* ExpensesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC4441E1ACB07FD00BEE364 /* ExpensesViewController.m */; };
+		EFC444231ACB08B000BEE364 /* BalancoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC444221ACB08B000BEE364 /* BalancoViewController.m */; };
 		EFC59BE61ACADD5800F17FE4 /* ExpenseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC59BE51ACADD5800F17FE4 /* ExpenseDetailViewController.m */; };
 		F74E51F71AC4470B00BB5497 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F74E51F61AC4470B00BB5497 /* main.m */; };
 		F74E51FA1AC4470C00BB5497 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F74E51F91AC4470C00BB5497 /* AppDelegate.m */; };
@@ -32,6 +35,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EFC4441A1ACB06D400BEE364 /* EventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsViewController.h; sourceTree = "<group>"; };
+		EFC4441B1ACB06D400BEE364 /* EventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsViewController.m; sourceTree = "<group>"; };
+		EFC4441D1ACB07FD00BEE364 /* ExpensesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpensesViewController.h; sourceTree = "<group>"; };
+		EFC4441E1ACB07FD00BEE364 /* ExpensesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpensesViewController.m; sourceTree = "<group>"; };
+		EFC444211ACB08B000BEE364 /* BalancoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalancoViewController.h; sourceTree = "<group>"; };
+		EFC444221ACB08B000BEE364 /* BalancoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalancoViewController.m; sourceTree = "<group>"; };
 		EFC59BE41ACADD5800F17FE4 /* ExpenseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenseDetailViewController.h; sourceTree = "<group>"; };
 		EFC59BE51ACADD5800F17FE4 /* ExpenseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseDetailViewController.m; sourceTree = "<group>"; };
 		F74E51F11AC4470B00BB5497 /* PassaChapeu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PassaChapeu.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,8 +48,8 @@
 		F74E51F61AC4470B00BB5497 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F74E51F81AC4470B00BB5497 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F74E51F91AC4470C00BB5497 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F74E51FB1AC4470C00BB5497 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../ViewController.h; sourceTree = "<group>"; };
-		F74E51FC1AC4470C00BB5497 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../ViewController.m; sourceTree = "<group>"; };
+		F74E51FB1AC4470C00BB5497 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F74E51FC1AC4470C00BB5497 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		F74E51FF1AC4470C00BB5497 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F74E52011AC4470C00BB5497 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F74E52041AC4470C00BB5497 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -53,8 +62,8 @@
 		F74E52211AC4480800BB5497 /* Expense.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Expense.m; sourceTree = "<group>"; };
 		F74E52231AC4482200BB5497 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		F74E52241AC4482200BB5497 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
-		F74E52261AC4485A00BB5497 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
-		F74E52271AC4485A00BB5497 /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
+		F74E52261AC4485A00BB5497 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Controller.h; path = ../Controller.h; sourceTree = "<group>"; };
+		F74E52271AC4485A00BB5497 /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Controller.m; path = ../Controller.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +84,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EFC444201ACB084300BEE364 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EFC444211ACB08B000BEE364 /* BalancoViewController.h */,
+				EFC444221ACB08B000BEE364 /* BalancoViewController.m */,
+				EFC4441A1ACB06D400BEE364 /* EventsViewController.h */,
+				EFC4441B1ACB06D400BEE364 /* EventsViewController.m */,
+				F74E51FB1AC4470C00BB5497 /* ViewController.h */,
+				F74E51FC1AC4470C00BB5497 /* ViewController.m */,
+				EFC4441D1ACB07FD00BEE364 /* ExpensesViewController.h */,
+				EFC4441E1ACB07FD00BEE364 /* ExpensesViewController.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		F74E51E81AC4470B00BB5497 = {
 			isa = PBXGroup;
 			children = (
@@ -96,10 +120,8 @@
 		F74E51F31AC4470B00BB5497 /* PassaChapeu */ = {
 			isa = PBXGroup;
 			children = (
+				EFC444201ACB084300BEE364 /* Views */,
 				F74E521A1AC4478B00BB5497 /* models */,
-				F7BD2F971ACAF1D200C89EB6 /* views */,
-				F74E52261AC4485A00BB5497 /* Controller.h */,
-				F74E52271AC4485A00BB5497 /* Controller.m */,
 				F74E51F81AC4470B00BB5497 /* AppDelegate.h */,
 				F74E51F91AC4470C00BB5497 /* AppDelegate.m */,
 				F74E51FE1AC4470C00BB5497 /* Main.storyboard */,
@@ -141,6 +163,8 @@
 		F74E521A1AC4478B00BB5497 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				F74E52261AC4485A00BB5497 /* Controller.h */,
+				F74E52271AC4485A00BB5497 /* Controller.m */,
 				F74E521D1AC447CF00BB5497 /* Sharer.h */,
 				F74E521E1AC447CF00BB5497 /* Sharer.m */,
 				F74E52201AC4480800BB5497 /* Expense.h */,
@@ -149,15 +173,6 @@
 				F74E52241AC4482200BB5497 /* Event.m */,
 			);
 			path = models;
-			sourceTree = "<group>";
-		};
-		F7BD2F971ACAF1D200C89EB6 /* views */ = {
-			isa = PBXGroup;
-			children = (
-				F74E51FB1AC4470C00BB5497 /* ViewController.h */,
-				F74E51FC1AC4470C00BB5497 /* ViewController.m */,
-			);
-			path = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +283,9 @@
 				F74E52221AC4480800BB5497 /* Expense.m in Sources */,
 				EFC59BE61ACADD5800F17FE4 /* ExpenseDetailViewController.m in Sources */,
 				F74E52281AC4485A00BB5497 /* Controller.m in Sources */,
+				EFC4441F1ACB07FD00BEE364 /* ExpensesViewController.m in Sources */,
+				EFC4441C1ACB06D400BEE364 /* EventsViewController.m in Sources */,
+				EFC444231ACB08B000BEE364 /* BalancoViewController.m in Sources */,
 				F74E51F71AC4470B00BB5497 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
