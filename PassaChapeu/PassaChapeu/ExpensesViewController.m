@@ -9,7 +9,11 @@
 #import "ExpensesViewController.h"
 #import "BalancoViewController.h"
 
+#import "Controller.h"
+
 @interface ExpensesViewController ()
+
+@property (nonatomic, strong) Controller *_controller;
 
 @end
 
@@ -33,10 +37,10 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"receipt"]) {
-        
+
         BalancoViewController *destViewController = segue.destinationViewController;
-        destViewController.sharers = nil;
-        destViewController.expenses = nil;
+        destViewController.sharers = self._controller.getSharers;
+        destViewController.expenses = self._controller.getExpenses;
 
     }
 }
