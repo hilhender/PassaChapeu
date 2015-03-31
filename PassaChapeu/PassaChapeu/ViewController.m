@@ -39,22 +39,28 @@
 - (IBAction)newEvent:(id)sender {
     /* Abrir uma caixa de texto pedindo nome do evento */
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Atenção" message:@"Insira o nome do evento:" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Atenção" message:@"Insira o nome do evento:" preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancelar", @"Cancel action") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        /* Implementa o botao cancelar. */
+        NSLog(@"Cancel action");
+    }];
     
-    //[alert addTextFieldWithConfigurationHandler:nil];
-    
-    [alert addAction:defaultAction];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        /* Implementa o botão OK. */
+        UITextField *eventName = alert.textFields.firstObject;
+        NSLog(@"%@", eventName.text);
+    }];
+
+    [alert addAction:cancelAction];
+    [alert addAction:okAction];
+
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+         textField.placeholder = NSLocalizedString(@"Nome do Evento", @"EventName");
+     }];
+
     [self presentViewController:alert animated:YES completion:nil];
-    
-    
-    /*
-    UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:@"Atenção" message:@"Insira nome do evento:" delegate:self cancelButtonTitle:@"Cancelar"  otherButtonTitles:nil];
-    [theAlert addButtonWithTitle:@"Ok"];
-    [theAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-    [theAlert ];
-    [theAlert show];*/
+
 }
 
 
