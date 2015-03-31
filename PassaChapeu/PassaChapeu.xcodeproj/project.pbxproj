@@ -84,7 +84,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EFC444201ACB084300BEE364 /* Views */ = {
+		EFC444201ACB084300BEE364 /* views */ = {
 			isa = PBXGroup;
 			children = (
 				EFC444211ACB08B000BEE364 /* BalancoViewController.h */,
@@ -96,7 +96,7 @@
 				EFC4441D1ACB07FD00BEE364 /* ExpensesViewController.h */,
 				EFC4441E1ACB07FD00BEE364 /* ExpensesViewController.m */,
 			);
-			name = Views;
+			name = views;
 			sourceTree = "<group>";
 		};
 		F74E51E81AC4470B00BB5497 = {
@@ -120,7 +120,7 @@
 		F74E51F31AC4470B00BB5497 /* PassaChapeu */ = {
 			isa = PBXGroup;
 			children = (
-				EFC444201ACB084300BEE364 /* Views */,
+				EFC444201ACB084300BEE364 /* views */,
 				F74E521A1AC4478B00BB5497 /* models */,
 				F74E51F81AC4470B00BB5497 /* AppDelegate.h */,
 				F74E51F91AC4470C00BB5497 /* AppDelegate.m */,
