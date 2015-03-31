@@ -39,8 +39,8 @@
 		F74E51F61AC4470B00BB5497 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F74E51F81AC4470B00BB5497 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F74E51F91AC4470C00BB5497 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F74E51FB1AC4470C00BB5497 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F74E51FC1AC4470C00BB5497 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F74E51FB1AC4470C00BB5497 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../ViewController.h; sourceTree = "<group>"; };
+		F74E51FC1AC4470C00BB5497 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../ViewController.m; sourceTree = "<group>"; };
 		F74E51FF1AC4470C00BB5497 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F74E52011AC4470C00BB5497 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F74E52041AC4470C00BB5497 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -97,12 +97,11 @@
 			isa = PBXGroup;
 			children = (
 				F74E521A1AC4478B00BB5497 /* models */,
+				F7BD2F971ACAF1D200C89EB6 /* views */,
 				F74E52261AC4485A00BB5497 /* Controller.h */,
 				F74E52271AC4485A00BB5497 /* Controller.m */,
 				F74E51F81AC4470B00BB5497 /* AppDelegate.h */,
 				F74E51F91AC4470C00BB5497 /* AppDelegate.m */,
-				F74E51FB1AC4470C00BB5497 /* ViewController.h */,
-				F74E51FC1AC4470C00BB5497 /* ViewController.m */,
 				F74E51FE1AC4470C00BB5497 /* Main.storyboard */,
 				F74E52011AC4470C00BB5497 /* Images.xcassets */,
 				F74E52031AC4470C00BB5497 /* LaunchScreen.xib */,
@@ -150,6 +149,15 @@
 				F74E52241AC4482200BB5497 /* Event.m */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		F7BD2F971ACAF1D200C89EB6 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				F74E51FB1AC4470C00BB5497 /* ViewController.h */,
+				F74E51FC1AC4470C00BB5497 /* ViewController.m */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

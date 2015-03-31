@@ -12,10 +12,14 @@
 @interface ViewController ()
 
 @property Controller *controller;
+@property (weak, nonatomic) IBOutlet UITableView *tblEventos;
 
 @end
 
-@implementation ViewController
+@implementation ViewController {
+    NSMutableArray *_events;
+}
+
 
 - (void)viewDidLoad {
     self.controller = [[Controller alloc] init];
@@ -31,6 +35,28 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)newEvent:(id)sender {
+    /* Abrir uma caixa de texto pedindo nome do evento */
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Atenção" message:@"Insira o nome do evento:" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+    
+    //[alert addTextFieldWithConfigurationHandler:nil];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
+    /*
+    UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:@"Atenção" message:@"Insira nome do evento:" delegate:self cancelButtonTitle:@"Cancelar"  otherButtonTitles:nil];
+    [theAlert addButtonWithTitle:@"Ok"];
+    [theAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+    [theAlert ];
+    [theAlert show];*/
+}
+
 
 /*
 -(IBAction)cadastreEvent(id)sender {
