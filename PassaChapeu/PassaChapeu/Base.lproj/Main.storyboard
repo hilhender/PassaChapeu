@@ -20,23 +20,6 @@
             </objects>
             <point key="canvasLocation" x="-1075.5" y="-1344"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="o43-k5-XnD">
-            <objects>
-                <viewController id="uUG-FZ-8S0" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="GcW-iI-Dae"/>
-                        <viewControllerLayoutGuide type="bottom" id="pxm-ia-66m"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="XXc-qM-CAU">
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SAQ-By-Dtz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-295.5" y="-1989.75"/>
-        </scene>
         <!--Eventos-->
         <scene sceneID="PJh-ZY-5w2">
             <objects>
@@ -70,6 +53,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="ker-IL-lG1" kind="show" id="qwW-L3-W7f"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
@@ -101,13 +87,7 @@
                                 <state key="normal" title="Novo">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="uUG-FZ-8S0" kind="show" id="xtO-hd-ou6"/>
-                                </connections>
                             </button>
-                            <connections>
-                                <segue destination="ker-IL-lG1" kind="show" id="VC6-Iv-WLE"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -116,7 +96,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aA1-Ox-qy3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-352.5" y="-1344"/>
+            <point key="canvasLocation" x="-358.5" y="-1339.5"/>
         </scene>
         <!--Gastos/Participantes-->
         <scene sceneID="Qze-j7-uSA">
@@ -168,6 +148,9 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <connections>
+                                <segue destination="t3v-Ig-Laz" kind="show" id="nEs-wn-IfF"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Balanço" id="1N3-Pk-NQQ">
                             <connections>
@@ -178,7 +161,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DPH-Al-VNS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="397.5" y="-1344"/>
+            <point key="canvasLocation" x="982.5" y="-1350"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="b2a-os-Gxy">
@@ -225,7 +208,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qdb-U7-Oim" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1086" y="-1344"/>
+            <point key="canvasLocation" x="2223" y="-1344"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="nEs-wn-IfF"/>
+    </inferredMetricsTieBreakers>
 </document>
