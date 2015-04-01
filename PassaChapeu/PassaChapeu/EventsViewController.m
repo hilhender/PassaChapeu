@@ -107,7 +107,8 @@
         ExpensesViewController *destViewController = segue.destinationViewController;
         NSIndexPath *indexPath = [self.EventsTable indexPathForSelectedRow];
         destViewController.event = [_eventsOnMemory objectAtIndex:indexPath.row];
-        NSLog(@"%@", destViewController.event.name);
+
+        [_EventsTable deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
  

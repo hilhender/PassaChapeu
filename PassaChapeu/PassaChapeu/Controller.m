@@ -16,11 +16,8 @@
 
 /* Default constructor. */
 - (Controller*) initWithEvent : (Event*) event {
-    if (event == nil) {
-        _event = [[Event alloc] init];
-    } else {
-        _event = event;
-    }
+    _event = event;
+    
     return self;
 }
 
@@ -31,7 +28,6 @@
 }
 
 - (Sharer*) getSharer: (NSUInteger) row {
-    
     return [_event getSharer:row];
 }
 
@@ -51,6 +47,10 @@
 - (void) addNewExpense: (NSString*)expenseToBeAdded withValue: (float)value{
     Expense* expense = [[Expense alloc] initWithName:expenseToBeAdded andValue: value];
     [self.event addNewExpense:expense];
+}
+
+- (Expense*) getExpense: (NSUInteger) row {
+    return [_event getExpense:row];
 }
 
 /* Remove gasto... */

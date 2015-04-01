@@ -33,7 +33,7 @@
     _controller = [[Controller alloc] initWithEvent:_event];
     lblEventName.text = _controller.event.name;
   
-    [self setInfo];
+    [self setEventInfo];
     
     
     [super viewDidLoad];
@@ -44,7 +44,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setInfo {
+- (void)setEventInfo {
         /* Se nada estiver selecionado. */
         /* Quais informacoes a exibir? */
         [self.lblContributedValue setHidden:NO];
@@ -63,8 +63,6 @@
         self.lblContributedValue.text = [NSString stringWithFormat:@"%.2f", contributedValue];
         self.lblTotalCost.text = [NSString stringWithFormat:@"%.2f", totalCost];
         self.lblBalance.text = [NSString stringWithFormat:@"%.2f", balance];
-
-    
     
 }
 
@@ -90,7 +88,6 @@
         Expense *newExpense = [[Expense alloc] initWithName:name andValue:cost];
         [_event addNewExpense: newExpense];
         [_tblGastos reloadData];
-        NSLog(@"%@, %.2f", name, cost);
     }];
     
     [alert addAction:cancelAction];
@@ -123,7 +120,6 @@
         Sharer *newSharer = [[Sharer alloc] initWithName:name];
         [_event addNewSharer: newSharer];
         [_tblPessoas reloadData];
-        NSLog(@"%@", name);
     }];
     
     [alert addAction:cancelAction];
@@ -157,7 +153,9 @@
         
         Expense* expense = _event.expenses[indexPath.row];
         cell.textLabel.text = expense.name;
-
+        NSString* valueInString = [NSString stringWithFormat:@"$%.2f", expense.value];
+        cell.detailTextLabel.text = valueInString;
+        
         return cell;
     }
     //se chegou aqui eh porque deu merda
@@ -172,11 +170,9 @@
     NSUInteger row = [indexPath row];
     
     if([tableView isEqual: _tblPessoas]){
-        
-        Sharer *sharer = [_controller getSharer:row];
-        
-        /* TERMINAR DE IMPLEMENTAR. TENHO QUE PEGAR A PESOA SELECIONADA E PERGUNTAR AO CONTROLLER AS INFORMACOES DAQUELA PESSOA. */
         /* Se pessoa estiver selecionado. */
+        Sharer *sharer = [_controller getSharer:row];
+
         /* Quais informacoes a exibir? */
         [self.lblContributedValue setHidden:YES];
         [self.lblTotalCost setHidden:NO];
@@ -185,21 +181,23 @@
         
         /* Valores a serem exibidos. */
         float contributedValue, totalCost, balance;
-        contributedValue = [self.controller getContributedValue];
-        totalCost = [self.controller getTotalCost];
+        contributedValue = sharer.contributedValue;
+        totalCost = sharer.evaluateBalance;
         balance = contributedValue - totalCost;
         
         /* Exibe. */
         self.lblInfo.text = @"Valor contribuido:\nTotal gastos:\nSaldo:";
-        self.lblContributedValue.text = [NSString stringWithFormat:@"%.2f", contributedValue];
+        self.txtContributedValue.text = [NSString stringWithFormat:@"%.2f", contributedValue];
         self.lblTotalCost.text = [NSString stringWithFormat:@"%.2f", totalCost];
         self.lblBalance.text = [NSString stringWithFormat:@"%.2f", balance];
         
     }
     //cria cell para _tblGastos
     else if([tableView isEqual: _tblGastos]){
-        /* TERMINAR DE IMPLEMENTAR. TENHO QUE PEGAR O GASTO SELECIONADO E PERGUNTAR AO CONTROLLER O VALOR DAQUELE GASTO E DIVIDIR PELO NUMERO DE PESSOAS */
         /* Se gasto estiver selecionado. */
+        
+        Expense *expense = [_controller getExpense:row];
+        
         /* Quais informacoes a exibir? */
         [self.lblContributedValue setHidden:NO];
         [self.lblTotalCost setHidden:YES];
@@ -208,11 +206,15 @@
         
         /* Valores a serem exibidos. */
         float costPerPerson;
-        costPerPerson = [self.controller getContributedValue];
+        if (expense.getNumberOfSharers == 0) {
+            costPerPerson = expense.value ;
+        } else {
+            costPerPerson = expense.value / expense.getNumberOfSharers;
+        }
         
         /* Exibe. */
         self.lblInfo.text = @"Gasto por pessoa:";
-        self.lblContributedValue.text = [NSString stringWithFormat:@"%.2f", costPerPerson];
+        self.lblContributedValue.text = [NSString stringWithFormat:@"R$%.2f", costPerPerson];
 
     }
     

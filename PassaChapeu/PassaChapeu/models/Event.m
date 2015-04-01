@@ -47,6 +47,10 @@
     [self.expenses addObject:expense];
 }
 
+- (Expense*) getExpense: (NSUInteger) row {
+    return [_expenses objectAtIndex:row];
+}
+
 /* Remove gasto. */
 - (void) removeExpense: (Expense*) expense {
     [self.expenses removeObject:expense];

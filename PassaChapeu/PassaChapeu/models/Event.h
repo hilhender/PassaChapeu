@@ -25,6 +25,7 @@
 - (void) removeSharer: (Sharer*) sharerToBeRemoved;
 
 - (void) addNewExpense: (Expense*) expenseToBeAdded;
+- (Expense*) getExpense: (NSUInteger) row;
 - (void) removeExpense: (Expense*) expenseToBeRemoved;
 
 - (float) getContributedValue;
