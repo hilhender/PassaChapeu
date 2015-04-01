@@ -96,4 +96,12 @@
     [expense unassingSharer: sharer];
 }
 
+- (float) getContributedValue {
+    return [self.event getContributedValue];
+}
+
+- (float) getTotalCost {
+    return [self.event getTotalCost];
+}
+
 @end

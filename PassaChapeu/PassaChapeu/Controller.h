@@ -33,4 +33,7 @@
 - (void) linkExpense: (Expense *) expense ToSharer: (Sharer *)sharer;
 - (void) unlinkExpense: (Expense*) expense ToSharer: (Sharer *)sharer;
 
+- (float) getContributedValue;
+- (float) getTotalCost;
+
 @end

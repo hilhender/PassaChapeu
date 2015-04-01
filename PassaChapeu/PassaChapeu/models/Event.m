@@ -48,4 +48,26 @@
     [self.expenses removeObject:expense];
 }
 
+/* Retorna o valor de contribuição total. */
+- (float) getContributedValue {
+    float value = 0;
+    
+    for (Sharer *sharer in self.sharers) {
+        value += sharer.contributedValue;
+    }
+    
+    return value;
+}
+
+/* Retorna o valor de contribuição total. */
+- (float) getTotalCost {
+    float value = 0;
+
+    for (Expense *expense in self.expenses) {
+        value += expense.value;
+    }
+
+    return value;
+}
+
 @end

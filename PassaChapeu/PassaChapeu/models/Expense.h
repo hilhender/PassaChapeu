@@ -14,9 +14,12 @@
 @interface Expense : NSObject
 
 @property int uniqueID;
+
 @property NSString* name;
 @property float value;
+
 @property NSMutableArray* sharers;
+
 
 + (int) getUniqueIDAssigner;
 

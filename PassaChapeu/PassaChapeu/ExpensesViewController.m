@@ -14,6 +14,7 @@
 @interface ExpensesViewController ()
 
 @property (nonatomic, strong) Controller *_controller;
+@property (weak, nonatomic) IBOutlet UILabel *lblInfo;
 
 @end
 
@@ -22,13 +23,35 @@
 @synthesize eventName;
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     lblEventName.text = eventName;
+    /* falta o controller!! */
+    [self setInfo];
+    
+    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setInfo {
+    NSMutableString *info = [[NSMutableString alloc] init];
+
+    float contributedValue, totalCost, balance;
+    
+    contributedValue = [self._controller getContributedValue];
+    totalCost = [self._controller getTotalCost];
+    
+    balance = contributedValue - totalCost;
+
+    [info appendFormat:@"Valor contribuido: %.2f\n", contributedValue];
+    [info appendFormat:@"Total:             %.2f\n", totalCost];
+    [info appendFormat:@"Saldo:             %.2f", balance];
+    
+    self.lblInfo.text = [NSString stringWithString:info];
+    NSLog(@"%@", [NSString stringWithString:info]);
+    
 }
 
 

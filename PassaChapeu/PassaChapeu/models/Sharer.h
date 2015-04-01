@@ -16,6 +16,7 @@
 
 @property NSString* name;
 @property NSMutableArray* expenses;
+@property float contributedValue;
 
 + (int) getUniqueIDAssigner;
 
