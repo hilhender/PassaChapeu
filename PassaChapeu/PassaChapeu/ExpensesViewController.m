@@ -21,17 +21,26 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblContributedValue;
 @property (weak, nonatomic) IBOutlet UILabel *lblTotalCost;
 @property (weak, nonatomic) IBOutlet UILabel *lblBalance;
+@property (weak, nonatomic) IBOutlet UITableView *tblGastos;
+@property (weak, nonatomic) IBOutlet UITableView *tblPessoas;
 
 @end
 
-@implementation ExpensesViewController
+@implementation ExpensesViewController {
+    NSMutableArray *_expenses;
+}
+
 @synthesize lblEventName;
 @synthesize eventName;
 
 - (void)viewDidLoad {
     lblEventName.text = eventName;
+    _expenses = [NSMutableArray array];
+    [_expenses addObject:@"teste"];
+    
     /* falta o controller!! */
     [self setInfo];
+    
     
     [super viewDidLoad];
 }
@@ -43,6 +52,42 @@
 
 - (void)setInfo {
     if (true) {
+        /* TERMINAR DE IMPLEMENTAR. TENHO QUE PEGAR A PESOA SELECIONADA E PERGUNTAR AO CONTROLLER AS INFORMACOES DAQUELA PESSOA. */
+        /* Se pessoa estiver selecionado. */
+        /* Quais informacoes a exibir? */
+        [self.lblContributedValue setHidden:YES];
+        [self.lblTotalCost setHidden:NO];
+        [self.lblBalance setHidden:NO];
+        [self.txtContributedValue setHidden:NO];
+        
+        /* Valores a serem exibidos. */
+        float contributedValue, totalCost, balance;
+        contributedValue = [self._controller getContributedValue];
+        totalCost = [self._controller getTotalCost];
+        balance = contributedValue - totalCost;
+        
+        /* Exibe. */
+        self.lblInfo.text = @"Valor contribuido:\nTotal gastos:\nSaldo:";
+        self.lblContributedValue.text = [NSString stringWithFormat:@"%.2f", contributedValue];
+        self.lblTotalCost.text = [NSString stringWithFormat:@"%.2f", totalCost];
+        self.lblBalance.text = [NSString stringWithFormat:@"%.2f", balance];
+    } else if (true) {
+        /* TERMINAR DE IMPLEMENTAR. TENHO QUE PEGAR O GASTO SELECIONADO E PERGUNTAR AO CONTROLLER O VALOR DAQUELE GASTO E DIVIDIR PELO NUMERO DE PESSOAS */
+        /* Se gasto estiver selecionado. */
+        /* Quais informacoes a exibir? */
+        [self.lblContributedValue setHidden:NO];
+        [self.lblTotalCost setHidden:YES];
+        [self.lblBalance setHidden:YES];
+        [self.txtContributedValue setHidden:YES];
+        
+        /* Valores a serem exibidos. */
+        float costPerPerson;
+        costPerPerson = [self._controller getContributedValue];
+
+        /* Exibe. */
+        self.lblInfo.text = @"Gasto por pessoa:";
+        self.lblContributedValue.text = [NSString stringWithFormat:@"%.2f", costPerPerson];
+    } else {
         /* Se nada estiver selecionado. */
         /* Quais informacoes a exibir? */
         [self.lblContributedValue setHidden:NO];
@@ -55,31 +100,17 @@
         contributedValue = [self._controller getContributedValue];
         totalCost = [self._controller getTotalCost];
         balance = contributedValue - totalCost;
-
+        
         /* Exibe. */
         self.lblInfo.text = @"Valor contribuido:\nTotal:\nSaldo:";
         self.lblContributedValue.text = [NSString stringWithFormat:@"%.2f", contributedValue];
         self.lblTotalCost.text = [NSString stringWithFormat:@"%.2f", totalCost];
         self.lblBalance.text = [NSString stringWithFormat:@"%.2f", balance];
-    } else if (true) {
-        /* Se gasto estiver selecionado. */
-        /* Quais informacoes a exibir? */
-        [self.lblContributedValue setHidden:NO];
-        [self.lblTotalCost setHidden:YES];
-        [self.lblBalance setHidden:YES];
-        [self.txtContributedValue setHidden:YES];
-        
-        /* Valores a serem exibidos. */
-        float costPerPerson;
-        costPerPerson = [self._controller getContributedValue];
-        
-        /* Exibe. */
-        self.lblInfo.text = @"Gasto por pessoa:";
-        self.lblContributedValue.text = [NSString stringWithFormat:@"%.2f", costPerPerson];
     }
     
     
 }
+
 
 
 #pragma mark - Navigation
@@ -87,13 +118,12 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"receipt"]) {
-
+        
         BalancoViewController *destViewController = segue.destinationViewController;
         destViewController.sharers = self._controller.getSharers;
         destViewController.expenses = self._controller.getExpenses;
-
+        
     }
 }
-
 
 @end
