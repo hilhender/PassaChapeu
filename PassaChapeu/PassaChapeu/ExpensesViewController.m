@@ -123,7 +123,10 @@
         NSString *name = nameExpense.text;
         float cost = costExpense.text.floatValue;
         
-        /* Tenho nome e custo em *name e cost. */
+        /* Cria nova expense com nome e custo e adiciona ao evento. Recarrega _tblGastos */
+        Expense *newExpense = [[Expense alloc] initWithName:name andValue:cost];
+        [_event addNewExpense: newExpense];
+        [_tblGastos reloadData];
         NSLog(@"%@, %.2f", name, cost);
     }];
     
@@ -183,13 +186,16 @@
         
         return cell;
     }
+    
     //cria cell para _tblGastos
     else if([tableView isEqual: _tblGastos]){
         static NSString *cellIdentifier = @"ExpensesCell";
-        UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier: cellIdentifier forIndexPath:indexPath];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier forIndexPath:indexPath];
         
         Expense* expense = _event.expenses[indexPath.row];
         cell.textLabel.text = expense.name;
+        NSString* valueInString = [NSString stringWithFormat:@"$%.2f", expense.value];
+        cell.detailTextLabel.text = valueInString;
         
         return cell;
     }
@@ -197,28 +203,6 @@
     else
         return nil;
 }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-   /*
- 
-    static NSString *CellIdentifier = @"EventCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    Event *event = _eventsOnMemory[indexPath.row];
-    cell.textLabel.text = event.name;
-    
-    return cell;
-     
-}*/
-
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section{
