@@ -14,7 +14,13 @@
 @interface ExpensesViewController ()
 
 @property (nonatomic, strong) Controller *_controller;
+
 @property (weak, nonatomic) IBOutlet UILabel *lblInfo;
+
+@property (weak, nonatomic) IBOutlet UITextField *txtContributedValue;
+@property (weak, nonatomic) IBOutlet UILabel *lblContributedValue;
+@property (weak, nonatomic) IBOutlet UILabel *lblTotalCost;
+@property (weak, nonatomic) IBOutlet UILabel *lblBalance;
 
 @end
 
@@ -36,21 +42,42 @@
 }
 
 - (void)setInfo {
-    NSMutableString *info = [[NSMutableString alloc] init];
+    if (true) {
+        /* Se nada estiver selecionado. */
+        /* Quais informacoes a exibir? */
+        [self.lblContributedValue setHidden:NO];
+        [self.lblTotalCost setHidden:NO];
+        [self.lblBalance setHidden:NO];
+        [self.txtContributedValue setHidden:YES];
+        
+        /* Valores a serem exibidos. */
+        float contributedValue, totalCost, balance;
+        contributedValue = [self._controller getContributedValue];
+        totalCost = [self._controller getTotalCost];
+        balance = contributedValue - totalCost;
 
-    float contributedValue, totalCost, balance;
+        /* Exibe. */
+        self.lblInfo.text = @"Valor contribuido:\nTotal:\nSaldo:";
+        self.lblContributedValue.text = [NSString stringWithFormat:@"%.2f", contributedValue];
+        self.lblTotalCost.text = [NSString stringWithFormat:@"%.2f", totalCost];
+        self.lblBalance.text = [NSString stringWithFormat:@"%.2f", balance];
+    } else if (true) {
+        /* Se gasto estiver selecionado. */
+        /* Quais informacoes a exibir? */
+        [self.lblContributedValue setHidden:NO];
+        [self.lblTotalCost setHidden:YES];
+        [self.lblBalance setHidden:YES];
+        [self.txtContributedValue setHidden:YES];
+        
+        /* Valores a serem exibidos. */
+        float costPerPerson;
+        costPerPerson = [self._controller getContributedValue];
+        
+        /* Exibe. */
+        self.lblInfo.text = @"Gasto por pessoa:";
+        self.lblContributedValue.text = [NSString stringWithFormat:@"%.2f", costPerPerson];
+    }
     
-    contributedValue = [self._controller getContributedValue];
-    totalCost = [self._controller getTotalCost];
-    
-    balance = contributedValue - totalCost;
-
-    [info appendFormat:@"Valor contribuido: %.2f\n", contributedValue];
-    [info appendFormat:@"Total:             %.2f\n", totalCost];
-    [info appendFormat:@"Saldo:             %.2f", balance];
-    
-    self.lblInfo.text = [NSString stringWithString:info];
-    NSLog(@"%@", [NSString stringWithString:info]);
     
 }
 
