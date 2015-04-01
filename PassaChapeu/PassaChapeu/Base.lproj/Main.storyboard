@@ -118,14 +118,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="268" y="113" width="132" height="687"/>
+                                    <rect key="frame" x="268" y="113" width="132" height="503"/>
                                 </variation>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Q31-v1-his">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="113" width="260" height="687"/>
+                                    <rect key="frame" x="0.0" y="113" width="260" height="503"/>
                                 </variation>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1Y-kD-zGh">
@@ -137,6 +137,15 @@
                                     <rect key="frame" x="201" y="72" width="42" height="21"/>
                                 </variation>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Informações" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJk-Vf-4oR">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="624" width="400" height="123"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -144,6 +153,7 @@
                                 <exclude reference="kAo-9x-krz"/>
                                 <exclude reference="Q31-v1-his"/>
                                 <exclude reference="J1Y-kD-zGh"/>
+                                <exclude reference="QJk-Vf-4oR"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -151,6 +161,7 @@
                                 <include reference="kAo-9x-krz"/>
                                 <include reference="Q31-v1-his"/>
                                 <include reference="J1Y-kD-zGh"/>
+                                <include reference="QJk-Vf-4oR"/>
                             </mask>
                         </variation>
                     </view>
@@ -170,6 +181,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="lblEventName" destination="J1Y-kD-zGh" id="iXu-8A-QCP"/>
+                        <outlet property="lblInfo" destination="QJk-Vf-4oR" id="pMH-Fm-MJ0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DPH-Al-VNS" userLabel="First Responder" sceneMemberID="firstResponder"/>

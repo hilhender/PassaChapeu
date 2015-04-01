@@ -24,4 +24,7 @@
 - (void) addNewExpense: (Expense*) expenseToBeAdded;
 - (void) removeExpense: (Expense*) expenseToBeRemoved;
 
+- (float) getContributedValue;
+- (float) getTotalCost;
+
 @end
