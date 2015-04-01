@@ -18,9 +18,26 @@
 
 /* Default constructor. */
 - (Controller*) init {
-    self.event = [[Event alloc] init];
-
+    _EventsArray = [[NSMutableArray alloc] init];
+    
     return self;
+}
+
+/*Adiciona novo evento*/
+//Dois eventos distintos podem ter exatamente o mesmo nome, porem serao
+//eventos diferentes (com enderecos diferentes)
+- (void) addNewEvent:(NSString *)newEventName{
+    [_EventsArray addObject: [[Event alloc] initWithName: newEventName]];
+}
+
+/*Remove evento*/
+- (void) removeEvent:(Event *)eventToBeRemoved{
+    [_EventsArray removeObject: eventToBeRemoved];
+}
+
+/*Seleciona evento a ser operado por Controller*/
+- (void) selectEvent:(Event *)selectedEvent{
+    self.event = selectedEvent;
 }
 
 /* Adiciona novo participante. */

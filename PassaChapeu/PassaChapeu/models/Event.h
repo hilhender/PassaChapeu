@@ -13,10 +13,12 @@
 
 @interface Event : NSObject
 
+@property NSString* name;
+
 @property NSMutableArray* sharers;
 @property NSMutableArray* expenses;
 
-- (Event*) init;
+- (Event*) initWithName: (NSString*) newEventName;
 
 - (void) addNewSharer: (Sharer*) sharerToBeAdded;
 - (void) removeSharer: (Sharer*) sharerToBeRemoved;

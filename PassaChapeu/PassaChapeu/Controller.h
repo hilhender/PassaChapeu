@@ -13,7 +13,13 @@
 
 @interface Controller : NSObject
 
+@property NSMutableArray* EventsArray;
+
 - (Controller *) init;
+
+- (void) addNewEvent: (NSString*) newEventName;
+- (void) removeEvent: (Event*) eventToBeRemoved;
+- (void) selectEvent: (Event*) selectedEvent;
 
 - (void) addNewSharer: (NSString*) newSharerName;
 - (void) removeSharer: (Sharer*) sharerToBeRemoved;

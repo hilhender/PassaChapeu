@@ -16,13 +16,15 @@
 
 
 /* Default constructor. */
-- (Event*) init{
+- (Event*) initWithName: (NSString*) newEventName{
+    self.name = newEventName;
+    
     [Sharer setUniqueIDAssingerTo:0];
     [Expense setUniqueIDAssingerTo:0];
     
     self.sharers = [NSMutableArray array];
     self.expenses = [NSMutableArray array];
-
+    
     return self;
 }
 

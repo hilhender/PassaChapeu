@@ -8,10 +8,15 @@
 
 #import "EventsViewController.h"
 #import "ExpensesViewController.h"
+#import "Controller.h"
 
 @interface EventsViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *EventsTable;
+
+@property Controller* controller;
+
+@property NSMutableArray* events;
 
 @end
 
@@ -23,6 +28,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _controller = [[Controller alloc] init];
+    
+    [_controller addNewEvent: @"Churcao"];
+    [_controller addNewEvent: @"Praia"];
+    [_controller addNewEvent: @"Macarronada"];
+    [_controller addNewEvent: @"Churcao"];
+    
+    _events = _controller.EventsArray;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,6 +56,8 @@
         /* Implementa o botão OK. */
         UITextField *eventName = alert.textFields.firstObject;
         _newEventName = eventName.text;
+        [_controller addNewEvent: eventName.text];
+        [self.EventsTable reloadData];
 
         [self performSegueWithIdentifier:@"newEvent" sender:self];
     }];
@@ -61,9 +77,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *CellIdentifier =@"EventCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
+                                                            forIndexPath:indexPath];
     
-    cell.textLabel.text = @"porhoraalgumacoisa";
+    Event *event = _events[indexPath.row];
+    cell.textLabel.text = [event name];
     
     return cell;
 }
@@ -71,12 +89,7 @@
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section{
     
-    return 1;
-}
-
-- (IBAction)newEvent:(id)sender {
-    /* Abrir uma caixa de texto pedindo nome do evento */
-    
+    return [_events count];
 }
 
 

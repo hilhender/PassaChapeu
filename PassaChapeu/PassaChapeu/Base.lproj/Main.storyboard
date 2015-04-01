@@ -32,13 +32,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="56" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EGj-Ws-79F">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ORN-qF-3aN">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventCell" textLabel="tdP-OV-IaB" style="IBUITableViewCellStyleDefault" id="NNG-sg-mlU">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                        <rect key="frame" x="140" y="278" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NNG-sg-mlU" id="6gJ-fk-qQZ">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -54,30 +54,17 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="ker-IL-lG1" kind="show" identifier="oldEvent" id="g5A-3j-9cE"/>
+                                            <segue destination="ker-IL-lG1" kind="show" id="sdj-wB-qT2"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="64" width="400" height="736"/>
-                                </variation>
                                 <connections>
-                                    <outlet property="dataSource" destination="t3v-Ig-Laz" id="Rw9-y9-TTa"/>
-                                    <outlet property="delegate" destination="t3v-Ig-Laz" id="prr-tm-uj0"/>
+                                    <outlet property="dataSource" destination="t3v-Ig-Laz" id="APE-Tu-bNK"/>
+                                    <outlet property="delegate" destination="t3v-Ig-Laz" id="6Qn-Rl-CkI"/>
                                 </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="EGj-Ws-79F"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="EGj-Ws-79F"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Eventos" id="Hvf-nR-1wj">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="m25-Ze-0T1">
@@ -88,13 +75,13 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnNovo:" destination="t3v-Ig-Laz" eventType="touchUpInside" id="iHA-PO-aXq"/>
+                                    <action selector="btnNovo:" destination="t3v-Ig-Laz" eventType="touchUpInside" id="UcS-i6-fT5"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="EventsTable" destination="EGj-Ws-79F" id="gwz-A8-MkZ"/>
+                        <outlet property="EventsTable" destination="ORN-qF-3aN" id="Aaw-7B-v90"/>
                         <segue destination="ker-IL-lG1" kind="show" identifier="newEvent" id="a9o-WD-sg0"/>
                     </connections>
                 </viewController>
