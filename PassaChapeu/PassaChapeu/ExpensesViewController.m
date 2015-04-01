@@ -45,43 +45,6 @@
 }
 
 - (void)setInfo {
-    if (true) {
-        /* TERMINAR DE IMPLEMENTAR. TENHO QUE PEGAR A PESOA SELECIONADA E PERGUNTAR AO CONTROLLER AS INFORMACOES DAQUELA PESSOA. */
-        /* Se pessoa estiver selecionado. */
-        /* Quais informacoes a exibir? */
-        [self.lblContributedValue setHidden:YES];
-        [self.lblTotalCost setHidden:NO];
-        [self.lblBalance setHidden:NO];
-        [self.txtContributedValue setHidden:NO];
-        
-        /* Valores a serem exibidos. */
-        float contributedValue, totalCost, balance;
-        contributedValue = [self.controller getContributedValue];
-        totalCost = [self.controller getTotalCost];
-        balance = contributedValue - totalCost;
-        
-        /* Exibe. */
-        self.lblInfo.text = @"Valor contribuido:\nTotal gastos:\nSaldo:";
-        self.lblContributedValue.text = [NSString stringWithFormat:@"%.2f", contributedValue];
-        self.lblTotalCost.text = [NSString stringWithFormat:@"%.2f", totalCost];
-        self.lblBalance.text = [NSString stringWithFormat:@"%.2f", balance];
-    } else if (true) {
-        /* TERMINAR DE IMPLEMENTAR. TENHO QUE PEGAR O GASTO SELECIONADO E PERGUNTAR AO CONTROLLER O VALOR DAQUELE GASTO E DIVIDIR PELO NUMERO DE PESSOAS */
-        /* Se gasto estiver selecionado. */
-        /* Quais informacoes a exibir? */
-        [self.lblContributedValue setHidden:NO];
-        [self.lblTotalCost setHidden:YES];
-        [self.lblBalance setHidden:YES];
-        [self.txtContributedValue setHidden:YES];
-        
-        /* Valores a serem exibidos. */
-        float costPerPerson;
-        costPerPerson = [self.controller getContributedValue];
-        
-        /* Exibe. */
-        self.lblInfo.text = @"Gasto por pessoa:";
-        self.lblContributedValue.text = [NSString stringWithFormat:@"%.2f", costPerPerson];
-    } else {
         /* Se nada estiver selecionado. */
         /* Quais informacoes a exibir? */
         [self.lblContributedValue setHidden:NO];
@@ -100,7 +63,7 @@
         self.lblContributedValue.text = [NSString stringWithFormat:@"%.2f", contributedValue];
         self.lblTotalCost.text = [NSString stringWithFormat:@"%.2f", totalCost];
         self.lblBalance.text = [NSString stringWithFormat:@"%.2f", balance];
-    }
+
     
     
 }
@@ -190,7 +153,7 @@
         
         Expense* expense = _event.expenses[indexPath.row];
         cell.textLabel.text = expense.name;
-        
+
         return cell;
     }
     //se chegou aqui eh porque deu merda
@@ -199,7 +162,58 @@
 }
     
     
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    NSUInteger section = [indexPath section];
+    NSUInteger row = [indexPath row];
+    
+    if([tableView isEqual: _tblPessoas]){
+        
+        Sharer *sharer = [_controller getSharer:row];
+        
+        /* TERMINAR DE IMPLEMENTAR. TENHO QUE PEGAR A PESOA SELECIONADA E PERGUNTAR AO CONTROLLER AS INFORMACOES DAQUELA PESSOA. */
+        /* Se pessoa estiver selecionado. */
+        /* Quais informacoes a exibir? */
+        [self.lblContributedValue setHidden:YES];
+        [self.lblTotalCost setHidden:NO];
+        [self.lblBalance setHidden:NO];
+        [self.txtContributedValue setHidden:NO];
+        
+        /* Valores a serem exibidos. */
+        float contributedValue, totalCost, balance;
+        contributedValue = [self.controller getContributedValue];
+        totalCost = [self.controller getTotalCost];
+        balance = contributedValue - totalCost;
+        
+        /* Exibe. */
+        self.lblInfo.text = @"Valor contribuido:\nTotal gastos:\nSaldo:";
+        self.lblContributedValue.text = [NSString stringWithFormat:@"%.2f", contributedValue];
+        self.lblTotalCost.text = [NSString stringWithFormat:@"%.2f", totalCost];
+        self.lblBalance.text = [NSString stringWithFormat:@"%.2f", balance];
+        
+    }
+    //cria cell para _tblGastos
+    else if([tableView isEqual: _tblGastos]){
+        /* TERMINAR DE IMPLEMENTAR. TENHO QUE PEGAR O GASTO SELECIONADO E PERGUNTAR AO CONTROLLER O VALOR DAQUELE GASTO E DIVIDIR PELO NUMERO DE PESSOAS */
+        /* Se gasto estiver selecionado. */
+        /* Quais informacoes a exibir? */
+        [self.lblContributedValue setHidden:NO];
+        [self.lblTotalCost setHidden:YES];
+        [self.lblBalance setHidden:YES];
+        [self.txtContributedValue setHidden:YES];
+        
+        /* Valores a serem exibidos. */
+        float costPerPerson;
+        costPerPerson = [self.controller getContributedValue];
+        
+        /* Exibe. */
+        self.lblInfo.text = @"Gasto por pessoa:";
+        self.lblContributedValue.text = [NSString stringWithFormat:@"%.2f", costPerPerson];
+
+    }
+    
+    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
     
     
     
@@ -220,8 +234,7 @@
 }*/
 
 
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if([tableView isEqual: _tblPessoas])
         return [_event.sharers count];
     

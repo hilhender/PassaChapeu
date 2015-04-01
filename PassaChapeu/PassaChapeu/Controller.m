@@ -27,8 +27,14 @@
 /* Adiciona novo participante. */
 - (void) addNewSharer: (NSString*) newSharerName {
     Sharer* sharer = [[Sharer alloc] initWithName: newSharerName];
-    [self.event addNewSharer: sharer];
+    [_event addNewSharer: sharer];
 }
+
+- (Sharer*) getSharer: (NSUInteger) row {
+    
+    return [_event getSharer:row];
+}
+
 
 /* Remove participante... */
 - (void) removeSharer: (Sharer*) sharer {
