@@ -191,6 +191,7 @@
                                 </variation>
                                 <connections>
                                     <action selector="addExpense:" destination="ker-IL-lG1" eventType="touchUpOutside" id="IGA-nK-6hn"/>
+                                    <action selector="addExpense:" destination="ker-IL-lG1" eventType="touchUpInside" id="MXy-IW-lHp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUW-4w-TIi">

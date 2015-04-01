@@ -94,8 +94,8 @@
         
         /* Valores a serem exibidos. */
         float contributedValue, totalCost, balance;
-        contributedValue = [self._controller getContributedValue];
-        totalCost = [self._controller getTotalCost];
+        contributedValue = [self.controller getContributedValue];
+        totalCost = [self.controller getTotalCost];
         balance = contributedValue - totalCost;
         
         /* Exibe. */
@@ -111,14 +111,63 @@
 #pragma mark - Add Buttons
 
 - (IBAction)addExpense:(id)sender {
-   
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Atenção" message:@"Insira o nome e custo:" preferredStyle:UIAlertControllerStyleAlert];
     
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancelar", @"Cancel action") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        /* Implementa o botao cancelar. */
+        NSLog(@"Cancel action");
+    }];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        /* Implementa o botão OK. */
+        UITextField *nameExpense = alert.textFields.firstObject;
+        UITextField *costExpense = alert.textFields.lastObject;
+        
+        NSString *name = nameExpense.text;
+        float cost = costExpense.text.floatValue;
+        
+        /* Tenho nome e custo em *name e cost. */
+        NSLog(@"%@, %.2f", name, cost);
+    }];
+    
+    [alert addAction:cancelAction];
+    [alert addAction:okAction];
+    
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = NSLocalizedString(@"Insira nome", @"NameExpense");
+    }];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = NSLocalizedString(@"Insira custo", @"CostExpense");
+    }];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction)addSharer:(id)sender {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Atenção" message:@"Insira o nome do participante:" preferredStyle:UIAlertControllerStyleAlert];
     
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancelar", @"Cancel action") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        /* Implementa o botao cancelar. */
+        NSLog(@"Cancel action");
+    }];
     
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        /* Implementa o botão OK. */
+        UITextField *nameSharer = alert.textFields.firstObject;
+        NSString *name = nameSharer.text;
+
+        /* tenho o nome do participante em *name */
+        NSLog(@"%@", name);
+    }];
     
+    [alert addAction:cancelAction];
+    [alert addAction:okAction];
+    
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = NSLocalizedString(@"Insira nome", @"NameExpense");
+    }];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 
