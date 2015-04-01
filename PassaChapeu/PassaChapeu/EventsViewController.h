@@ -7,9 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Controller.h"
 
-@interface EventsViewController : UIViewController
-@property (nonatomic, strong) Controller *controller;
+@interface EventsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end

@@ -13,15 +13,9 @@
 
 @interface Controller : NSObject
 
-@property NSMutableArray* EventsArray;
-
 @property Event* event;
 
-- (Controller *) init;
-
-- (void) addNewEvent: (NSString*) newEventName;
-- (void) removeEvent: (Event*) eventToBeRemoved;
-- (void) selectEvent: (Event*) selectedEvent;
+- (Controller *) initWithEvent : (Event*) event;
 
 - (void) addNewSharer: (NSString*) newSharerName;
 - (void) removeSharer: (Sharer*) sharerToBeRemoved;

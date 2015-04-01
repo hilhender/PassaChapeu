@@ -9,30 +9,35 @@
 #import "EventsViewController.h"
 #import "ExpensesViewController.h"
 
-@interface EventsViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface EventsViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *EventsTable;
 
 @property NSMutableArray* events;
+@property NSMutableArray* eventsOnMemory;
 
 @end
 
 @implementation EventsViewController {
-    NSMutableArray *_events;
     NSString *_newEventName;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _controller = [[Controller alloc] init];
     
-    [_controller addNewEvent: @"Churcao"];
-    [_controller addNewEvent: @"Praia"];
-    [_controller addNewEvent: @"Macarronada"];
-    [_controller addNewEvent: @"Churcao"];
+    _events = [[NSMutableArray alloc] init];
+    _eventsOnMemory = [[NSMutableArray alloc] init];
     
-    _events = _controller.EventsArray;
+    [_eventsOnMemory addObject:[[Event alloc] initWithName:@"Churcao"]];
+    [_eventsOnMemory addObject:[[Event alloc] initWithName:@"Praia"]];
+    [_eventsOnMemory addObject:[[Event alloc] initWithName:@"Macarronada"]];
+    [_eventsOnMemory addObject:[[Event alloc] initWithName:@"Churcao"]];
+    
+    [_events addObject:@"Churcao"];
+    [_events addObject:@"Praia"];
+    [_events addObject:@"Macarronada"];
+    [_events addObject:@"Churcao"];
 
 }
 
@@ -53,7 +58,7 @@
         /* Implementa o botão OK. */
         UITextField *eventName = alert.textFields.firstObject;
         _newEventName = eventName.text;
-        [_controller addNewEvent: eventName.text];
+        [_events addObject: eventName.text];
         [self.EventsTable reloadData];
 
         [self performSegueWithIdentifier:@"newEvent" sender:self];
@@ -72,20 +77,18 @@
 #pragma mark - UITableViewDataSource required methods
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *CellIdentifier = @"EventCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    static NSString *CellIdentifier =@"EventCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
-                                                            forIndexPath:indexPath];
-    
-    Event *event = _events[indexPath.row];
-    cell.textLabel.text = [event name];
-    
+    NSString *event = _events[indexPath.row];
+    cell.textLabel.text = event;
+
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section{
-    
+
     return [_events count];
 }
 
@@ -97,20 +100,15 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"newEvent"]) {
         
-        [_controller selectEvent: [_controller.EventsArray lastObject]];
         ExpensesViewController *destViewController = segue.destinationViewController;
-        [_controller selectEvent: [_controller.EventsArray lastObject]];
-        destViewController.eventName = _controller.event.name;
         
     } else if ([segue.identifier isEqualToString:@"oldEvent"]) {
        
         
         ExpensesViewController *destViewController = segue.destinationViewController;
         NSIndexPath *indexPath = [self.EventsTable indexPathForSelectedRow];
-        [_controller selectEvent: [_controller.EventsArray objectAtIndex:indexPath.row]];
-        destViewController.eventName = _controller.event.name;
-        destViewController.controller = _controller;
-        
+        destViewController.event = [_eventsOnMemory objectAtIndex:indexPath.item];
+        NSLog(@"%@", destViewController.event.name);
     }
 }
  

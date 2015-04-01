@@ -28,9 +28,9 @@
 }
 
 @synthesize lblEventName;
-@synthesize eventName;
 
 - (void)viewDidLoad {
+    _controller = [[Controller alloc] initWithEvent:_event];
     lblEventName.text = _controller.event.name;
   
     [self setInfo];
