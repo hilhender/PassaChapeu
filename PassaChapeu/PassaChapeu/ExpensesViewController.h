@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Controller.h"
 
 @interface ExpensesViewController : UIViewController
+@property (nonatomic, strong) Controller *controller;
 
 @property (nonatomic, strong) IBOutlet UILabel *lblEventName;
 @property (nonatomic, strong) NSString *eventName;

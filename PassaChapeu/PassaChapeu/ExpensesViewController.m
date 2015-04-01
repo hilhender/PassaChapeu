@@ -9,11 +9,8 @@
 #import "ExpensesViewController.h"
 #import "BalancoViewController.h"
 
-#import "Controller.h"
 
 @interface ExpensesViewController ()
-
-@property (nonatomic, strong) Controller *controller;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblInfo;
 
@@ -112,7 +109,7 @@
 
 - (IBAction)addExpense:(id)sender {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Atenção" message:@"Insira o nome e custo:" preferredStyle:UIAlertControllerStyleAlert];
-    
+
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancelar", @"Cancel action") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
         /* Implementa o botao cancelar. */
         NSLog(@"Cancel action");
@@ -179,8 +176,7 @@
     if ([segue.identifier isEqualToString:@"receipt"]) {
         
         BalancoViewController *destViewController = segue.destinationViewController;
-        destViewController.sharers = self.controller.getSharers;
-        destViewController.expenses = self.controller.getExpenses;
+        destViewController.controller = _controller;
 
     }
 }

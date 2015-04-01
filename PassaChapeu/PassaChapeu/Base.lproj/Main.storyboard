@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="B5T-6a-The">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -277,9 +278,50 @@
                     <view key="view" contentMode="scaleToFill" id="kf4-mR-Et9">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TYR-QK-iZH">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" red="0.8991822787" green="0.90805540480000002" blue="0.93136442549999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="TYR-QK-iZH" firstAttribute="trailing" secondItem="kf4-mR-Et9" secondAttribute="trailingMargin" id="CW6-g1-XXM"/>
+                            <constraint firstItem="TYR-QK-iZH" firstAttribute="leading" secondItem="kf4-mR-Et9" secondAttribute="leadingMargin" id="TkG-K0-vuA"/>
+                            <constraint firstAttribute="bottom" secondItem="TYR-QK-iZH" secondAttribute="bottom" constant="20" symbolic="YES" id="o9r-cl-0x7"/>
+                            <constraint firstItem="TYR-QK-iZH" firstAttribute="top" secondItem="xV3-nl-4Ko" secondAttribute="bottom" id="rzC-PH-d7x">
+                                <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                            </constraint>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="TYR-QK-iZH"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="CW6-g1-XXM"/>
+                                <exclude reference="TkG-K0-vuA"/>
+                                <exclude reference="o9r-cl-0x7"/>
+                                <exclude reference="rzC-PH-d7x"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="TYR-QK-iZH"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="CW6-g1-XXM"/>
+                                <include reference="TkG-K0-vuA"/>
+                                <include reference="o9r-cl-0x7"/>
+                                <include reference="rzC-PH-d7x"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Recibo" id="App-w9-WUR"/>
+                    <connections>
+                        <outlet property="txtReceipt" destination="TYR-QK-iZH" id="wLd-Ft-AMq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qdb-U7-Oim" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Controller.h"
 
 @interface BalancoViewController : UIViewController
-
-@property (nonatomic, strong) NSMutableArray* sharers;
-@property (nonatomic, strong) NSMutableArray* expenses;
+@property (nonatomic, strong) Controller *controller;
 
 @end

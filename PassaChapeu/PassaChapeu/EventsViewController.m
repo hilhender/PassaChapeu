@@ -8,13 +8,10 @@
 
 #import "EventsViewController.h"
 #import "ExpensesViewController.h"
-#import "Controller.h"
 
 @interface EventsViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *EventsTable;
-
-@property Controller* controller;
 
 @property NSMutableArray* events;
 
@@ -112,6 +109,8 @@
         NSIndexPath *indexPath = [self.EventsTable indexPathForSelectedRow];
         [_controller selectEvent: [_controller.EventsArray objectAtIndex:indexPath.row]];
         destViewController.eventName = _controller.event.name;
+        destViewController.controller = _controller;
+        
     }
 }
  
