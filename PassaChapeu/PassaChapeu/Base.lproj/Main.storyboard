@@ -54,7 +54,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="ker-IL-lG1" kind="show" id="sdj-wB-qT2"/>
+                                            <segue destination="ker-IL-lG1" kind="show" identifier="oldEvent" id="sdj-wB-qT2"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -196,6 +196,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="a9o-WD-sg0"/>
+        <segue reference="sdj-wB-qT2"/>
     </inferredMetricsTieBreakers>
 </document>

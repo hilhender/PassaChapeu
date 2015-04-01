@@ -15,6 +15,8 @@
 
 @property NSMutableArray* EventsArray;
 
+@property Event* event;
+
 - (Controller *) init;
 
 - (void) addNewEvent: (NSString*) newEventName;

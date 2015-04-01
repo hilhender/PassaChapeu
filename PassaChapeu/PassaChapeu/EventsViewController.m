@@ -100,15 +100,18 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"newEvent"]) {
         
+        [_controller selectEvent: [_controller.EventsArray lastObject]];
         ExpensesViewController *destViewController = segue.destinationViewController;
-        destViewController.eventName = _newEventName;
+        [_controller selectEvent: [_controller.EventsArray lastObject]];
+        destViewController.eventName = _controller.event.name;
         
     } else if ([segue.identifier isEqualToString:@"oldEvent"]) {
+       
         
         ExpensesViewController *destViewController = segue.destinationViewController;
         NSIndexPath *indexPath = [self.EventsTable indexPathForSelectedRow];
-        destViewController.eventName = [_events objectAtIndex:indexPath.row];
-        
+        [_controller selectEvent: [_controller.EventsArray objectAtIndex:indexPath.row]];
+        destViewController.eventName = _controller.event.name;
     }
 }
  

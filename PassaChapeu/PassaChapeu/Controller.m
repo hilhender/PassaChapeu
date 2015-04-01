@@ -10,8 +10,6 @@
 
 @interface Controller()
 
-@property Event* event;
-
 @end
 
 @implementation Controller
