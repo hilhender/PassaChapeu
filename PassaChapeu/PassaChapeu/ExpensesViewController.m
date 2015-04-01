@@ -170,6 +170,67 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+#pragma mark - Required methods of UITableViewDataSource Protocol
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    //cria cell para _tblPessoas
+    if([tableView isEqual: _tblPessoas]){
+        static NSString *cellIdentifier = @"SharerCell";
+        UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier: cellIdentifier forIndexPath:indexPath];
+        
+        Sharer* sharer = _event.sharers[indexPath.row];
+        cell.textLabel.text = sharer.name;
+        
+        return cell;
+    }
+    //cria cell para _tblGastos
+    else if([tableView isEqual: _tblGastos]){
+        static NSString *cellIdentifier = @"ExpensesCell";
+        UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier: cellIdentifier forIndexPath:indexPath];
+        
+        Expense* expense = _event.expenses[indexPath.row];
+        cell.textLabel.text = expense.name;
+        
+        return cell;
+    }
+    //se chegou aqui eh porque deu merda
+    else
+        return nil;
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   /*
+ 
+    static NSString *CellIdentifier = @"EventCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    Event *event = _eventsOnMemory[indexPath.row];
+    cell.textLabel.text = event.name;
+    
+    return cell;
+     
+}*/
+
+
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section{
+    if([tableView isEqual: _tblPessoas])
+        return [_event.sharers count];
+    
+    if([tableView isEqual: _tblGastos])
+        return [_event.expenses count];
+    
+    return 0; //soh pra nao correr o risco de nao retornar nada
+}
+
 
 
 #pragma mark - Navigation
