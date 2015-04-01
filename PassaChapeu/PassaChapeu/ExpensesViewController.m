@@ -13,7 +13,7 @@
 
 @interface ExpensesViewController ()
 
-@property (nonatomic, strong) Controller *_controller;
+@property (nonatomic, strong) Controller *controller;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblInfo;
 
@@ -29,8 +29,8 @@
 @synthesize eventName;
 
 - (void)viewDidLoad {
-    lblEventName.text = eventName;
-    /* falta o controller!! */
+    lblEventName.text = _controller.event.name;
+  
     [self setInfo];
     
     [super viewDidLoad];
@@ -52,8 +52,8 @@
         
         /* Valores a serem exibidos. */
         float contributedValue, totalCost, balance;
-        contributedValue = [self._controller getContributedValue];
-        totalCost = [self._controller getTotalCost];
+        contributedValue = [self.controller getContributedValue];
+        totalCost = [self.controller getTotalCost];
         balance = contributedValue - totalCost;
 
         /* Exibe. */
@@ -71,12 +71,25 @@
         
         /* Valores a serem exibidos. */
         float costPerPerson;
-        costPerPerson = [self._controller getContributedValue];
+        costPerPerson = [self.controller getContributedValue];
         
         /* Exibe. */
         self.lblInfo.text = @"Gasto por pessoa:";
         self.lblContributedValue.text = [NSString stringWithFormat:@"%.2f", costPerPerson];
     }
+    
+    
+}
+
+#pragma mark - Add Buttons
+
+- (IBAction)addExpense:(id)sender {
+   
+    
+}
+
+- (IBAction)addSharer:(id)sender {
+    
     
     
 }
@@ -89,8 +102,8 @@
     if ([segue.identifier isEqualToString:@"receipt"]) {
 
         BalancoViewController *destViewController = segue.destinationViewController;
-        destViewController.sharers = self._controller.getSharers;
-        destViewController.expenses = self._controller.getExpenses;
+        destViewController.sharers = self.controller.getSharers;
+        destViewController.expenses = self.controller.getExpenses;
 
     }
 }

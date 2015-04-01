@@ -105,14 +105,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="268" y="113" width="132" height="372"/>
+                                    <rect key="frame" x="268" y="113" width="132" height="329"/>
                                 </variation>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Q31-v1-his">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="113" width="260" height="372"/>
+                                    <rect key="frame" x="0.0" y="113" width="260" height="329"/>
                                 </variation>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1Y-kD-zGh">
@@ -172,6 +172,30 @@
                                     <rect key="frame" x="270" y="563" width="97" height="30"/>
                                 </variation>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pWC-Yg-Pcf">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="+ Despesa">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="454" width="260" height="31"/>
+                                </variation>
+                                <connections>
+                                    <action selector="addExpense:" destination="ker-IL-lG1" eventType="touchUpOutside" id="IGA-nK-6hn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUW-4w-TIi">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="+ Participante">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="268" y="455" width="108" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="addSharer:" destination="ker-IL-lG1" eventType="touchUpInside" id="yEr-uM-cWo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -184,6 +208,8 @@
                                 <exclude reference="fTL-e4-P7o"/>
                                 <exclude reference="SBQ-hO-prE"/>
                                 <exclude reference="MQj-BL-yTI"/>
+                                <exclude reference="pWC-Yg-Pcf"/>
+                                <exclude reference="gUW-4w-TIi"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -196,6 +222,8 @@
                                 <include reference="fTL-e4-P7o"/>
                                 <include reference="SBQ-hO-prE"/>
                                 <include reference="MQj-BL-yTI"/>
+                                <include reference="pWC-Yg-Pcf"/>
+                                <include reference="gUW-4w-TIi"/>
                             </mask>
                         </variation>
                     </view>
