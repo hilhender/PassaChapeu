@@ -111,6 +111,15 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Q31-v1-his">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ya4-xc-ADS">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ya4-xc-ADS" id="kgx-82-W6K">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="113" width="260" height="329"/>
                                 </variation>
@@ -247,6 +256,8 @@
                         <outlet property="lblEventName" destination="J1Y-kD-zGh" id="iXu-8A-QCP"/>
                         <outlet property="lblInfo" destination="QJk-Vf-4oR" id="pMH-Fm-MJ0"/>
                         <outlet property="lblTotalCost" destination="xOV-gt-bZ5" id="gcF-Jg-zTc"/>
+                        <outlet property="tblGastos" destination="Q31-v1-his" id="hzW-zm-3I0"/>
+                        <outlet property="tblPessoas" destination="kAo-9x-krz" id="JUG-oq-59f"/>
                         <outlet property="txtContributedValue" destination="MQj-BL-yTI" id="trC-vf-lOX"/>
                     </connections>
                 </viewController>
