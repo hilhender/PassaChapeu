@@ -10,7 +10,7 @@
 #import "BalancoViewController.h"
 
 
-@interface ExpensesViewController ()
+@interface ExpensesViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UILabel *lblInfo;
 
@@ -153,7 +153,10 @@
         UITextField *nameSharer = alert.textFields.firstObject;
         NSString *name = nameSharer.text;
 
-        /* tenho o nome do participante em *name */
+        /* Cria um novo participante com "name", adiciona ao evento e recarrega a Table de participantes */
+        Sharer *newSharer = [[Sharer alloc] initWithName:name];
+        [_event addNewSharer: newSharer];
+        [_tblPessoas reloadData];
         NSLog(@"%@", name);
     }];
     
