@@ -37,9 +37,14 @@
     lblEventName.text = _controller.event.name;
   
     [self setEventInfo];
+    //[_tblGastos addGestureRecognizer:leftSwipeGestureRecognizer];
     
     
     [super viewDidLoad];
+}
+
+- (void) swipeLeft : (UITableViewCell* )cell{
+    [self setEventInfo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -219,6 +224,10 @@
 
         Sharer* sharer = _event.sharers[indexPath.row];
         cell.textLabel.text = sharer.name;
+        
+        UISwipeGestureRecognizer* leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft:cell:)];
+        leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+        [cell addGestureRecognizer:leftSwipeGestureRecognizer];
 
         return cell;
     }
@@ -232,6 +241,10 @@
         cell.textLabel.text = expense.name;
         NSString* valueInString = [NSString stringWithFormat:@"$%.2f", expense.value];
         cell.detailTextLabel.text = valueInString;
+        
+        UISwipeGestureRecognizer* leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft)];
+        leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+        [cell addGestureRecognizer:leftSwipeGestureRecognizer];
         
         return cell;
     }
@@ -257,7 +270,7 @@
         [tableView deselectRowAtIndexPath:indexPath animated:animated];
     }
 }
-
+/*
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"teste");
     NSUInteger row = [indexPath row];
@@ -274,7 +287,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(3_0) {
     return @"X";
-}
+}*/
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if([tableView isEqual: _tblPessoas]){
