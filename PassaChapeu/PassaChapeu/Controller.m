@@ -63,7 +63,7 @@
 }
 
 - (NSUInteger) getExpenseID: (Expense*) expense {
-    return nil;
+    return [_event getExpenseID:expense];
 }
 
 /* Remove gasto... */
