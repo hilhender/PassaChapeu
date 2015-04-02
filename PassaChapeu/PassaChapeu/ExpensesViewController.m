@@ -310,25 +310,30 @@
 
     }
 }
-    
-    
-    
-    
-    
-    
-    
-   /*
- 
-    static NSString *CellIdentifier = @"EventCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    Event *event = _eventsOnMemory[indexPath.row];
-    cell.textLabel.text = event.name;
-    
-    return cell;
-     
-}*/
 
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(3_0){
+    if([tableView isEqual: _tblPessoas]){
+        if ([_tblGastos allowsMultipleSelection] || ![_tblPessoas allowsMultipleSelection]){
+            [self deselectAllRows:_tblPessoas animated: YES];
+        }
+        else{
+            Expense *expense = objectSelectedToBeEdited;
+            Sharer *sharer = [_controller getSharer: indexPath.row];
+            [_controller unlinkExpense:expense ToSharer:sharer];
+        }
+    }
+    if([tableView isEqual: _tblGastos]){
+        if ([_tblPessoas allowsMultipleSelection] || ![_tblGastos allowsMultipleSelection]){
+            [self deselectAllRows:_tblGastos animated: YES];
+        }
+        else{
+            Sharer *sharer = objectSelectedToBeEdited;
+            Expense *expense = [_controller getExpense: indexPath.row];
+            [_controller unlinkExpense:expense ToSharer:sharer];
+        }
+    }
+}
 
 
 #pragma mark - Navigation
