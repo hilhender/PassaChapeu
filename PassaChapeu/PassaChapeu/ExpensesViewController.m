@@ -88,6 +88,7 @@
         Expense *newExpense = [[Expense alloc] initWithName:name andValue:cost];
         [_event addNewExpense: newExpense];
         [_tblGastos reloadData];
+        
     }];
     
     [alert addAction:cancelAction];
@@ -145,7 +146,7 @@
         
         return cell;
     }
-    
+
     //cria cell para _tblGastos
     else if([tableView isEqual: _tblGastos]){
         static NSString *cellIdentifier = @"ExpensesCell";
@@ -163,61 +164,93 @@
         return nil;
 }
     
-    
+-(void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"saiu");
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
+    /*
+     [_tblGastos setAllowsMultipleSelection:YES];
+     [_tblPessoas setAllowsMultipleSelection:YES];
+     */
     NSUInteger section = [indexPath section];
     NSUInteger row = [indexPath row];
+    
+    
     
     if([tableView isEqual: _tblPessoas]){
         /* Se pessoa estiver selecionado. */
         Sharer *sharer = [_controller getSharer:row];
 
-        /* Quais informacoes a exibir? */
-        [self.lblContributedValue setHidden:YES];
-        [self.lblTotalCost setHidden:NO];
-        [self.lblBalance setHidden:NO];
-        [self.txtContributedValue setHidden:NO];
         
-        /* Valores a serem exibidos. */
-        float contributedValue, totalCost, balance;
-        contributedValue = sharer.contributedValue;
-        totalCost = sharer.evaluateBalance;
-        balance = contributedValue - totalCost;
-        
-        /* Exibe. */
-        self.lblInfo.text = @"Valor contribuido:\nTotal gastos:\nSaldo:";
-        self.txtContributedValue.text = [NSString stringWithFormat:@"%.2f", contributedValue];
-        self.lblTotalCost.text = [NSString stringWithFormat:@"%.2f", totalCost];
-        self.lblBalance.text = [NSString stringWithFormat:@"%.2f", balance];
+        if ([_tblGastos allowsMultipleSelection] || ![_tblPessoas allowsMultipleSelection]) {
+            /* Entra quando estou focado em atribuir gastos a uma pessoa. Estou editando uma pessoa. */
+            [_tblGastos setAllowsMultipleSelection:YES];
+            [_tblPessoas setAllowsMultipleSelection:NO];
+            
+            
+            /* Quais informacoes a exibir? */
+            [self.lblContributedValue setHidden:YES];
+            [self.lblTotalCost setHidden:NO];
+            [self.lblBalance setHidden:NO];
+            [self.txtContributedValue setHidden:NO];
+            
+            /* Valores a serem exibidos. */
+            float contributedValue, totalCost, balance;
+            contributedValue = sharer.contributedValue;
+            totalCost = sharer.evaluateBalance;
+            balance = contributedValue - totalCost;
+            
+            /* Exibe. */
+            self.lblInfo.text = @"Valor contribuido:\nTotal gastos:\nSaldo:";
+            self.txtContributedValue.text = [NSString stringWithFormat:@"%.2f", contributedValue];
+            self.lblTotalCost.text = [NSString stringWithFormat:@"%.2f", totalCost];
+            self.lblBalance.text = [NSString stringWithFormat:@"%.2f", balance];
+        } else {
+            /* Entra quando estou focado em atribuir gastos a uma pessoa */
+            [_tblGastos setAllowsMultipleSelection:NO];
+            [_tblPessoas setAllowsMultipleSelection:YES];
+            
+        }
         
     }
-    //cria cell para _tblGastos
+
     else if([tableView isEqual: _tblGastos]){
         /* Se gasto estiver selecionado. */
         
         Expense *expense = [_controller getExpense:row];
         
-        /* Quais informacoes a exibir? */
-        [self.lblContributedValue setHidden:NO];
-        [self.lblTotalCost setHidden:YES];
-        [self.lblBalance setHidden:YES];
-        [self.txtContributedValue setHidden:YES];
+        if (![_tblGastos allowsMultipleSelection] || [_tblPessoas allowsMultipleSelection]) {
+            [_tblGastos setAllowsMultipleSelection:NO];
+            [_tblPessoas setAllowsMultipleSelection:YES];
+
+            /* Quais informacoes a exibir? */
+            [self.lblContributedValue setHidden:NO];
+            [self.lblTotalCost setHidden:YES];
+            [self.lblBalance setHidden:YES];
+            [self.txtContributedValue setHidden:YES];
         
-        /* Valores a serem exibidos. */
-        float costPerPerson;
-        if (expense.getNumberOfSharers == 0) {
-            costPerPerson = expense.value ;
+            /* Valores a serem exibidos. */
+            float costPerPerson;
+            if (expense.getNumberOfSharers == 0) {
+                costPerPerson = expense.value ;
+            } else {
+                costPerPerson = expense.value / expense.getNumberOfSharers;
+            }
+        
+            /* Exibe. */
+            self.lblInfo.text = @"Gasto por pessoa:";
+            self.lblContributedValue.text = [NSString stringWithFormat:@"R$%.2f", costPerPerson];
         } else {
-            costPerPerson = expense.value / expense.getNumberOfSharers;
+            [_tblGastos setAllowsMultipleSelection:YES];
+            [_tblPessoas setAllowsMultipleSelection:NO];
         }
-        
-        /* Exibe. */
-        self.lblInfo.text = @"Gasto por pessoa:";
-        self.lblContributedValue.text = [NSString stringWithFormat:@"R$%.2f", costPerPerson];
 
     }
     
+    
+ 
     //[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
     

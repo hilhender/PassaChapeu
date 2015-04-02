@@ -31,12 +31,7 @@
     [_eventsOnMemory addObject:[[Event alloc] initWithName:@"Praia"]];
     [_eventsOnMemory addObject:[[Event alloc] initWithName:@"Macarronada"]];
     [_eventsOnMemory addObject:[[Event alloc] initWithName:@"Churcao"]];
-   /*
-    [_events addObject:@"Churcao"];
-    [_events addObject:@"Praia"];
-    [_events addObject:@"Macarronada"];
-    [_events addObject:@"Churcao"];
-    */
+
 }
 
 - (void)didReceiveMemoryWarning {
