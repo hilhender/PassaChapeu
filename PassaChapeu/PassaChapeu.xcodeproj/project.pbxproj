@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A636F361ACE0B2100D0D088 /* BalancoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A636F311ACE0B2100D0D088 /* BalancoViewController.m */; };
+		0A636F371ACE0B2100D0D088 /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A636F331ACE0B2100D0D088 /* EventsViewController.m */; };
+		0A636F381ACE0B2100D0D088 /* ExpensesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A636F351ACE0B2100D0D088 /* ExpensesViewController.m */; };
 		6FD2D5611ACC81A500403F26 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FD2D5601ACC81A500403F26 /* CoreData.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		6FD2D5641ACC83B900403F26 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6FD2D5621ACC83B900403F26 /* DataModel.xcdatamodeld */; };
-		EFC4441C1ACB06D400BEE364 /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC4441B1ACB06D400BEE364 /* EventsViewController.m */; };
-		EFC4441F1ACB07FD00BEE364 /* ExpensesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC4441E1ACB07FD00BEE364 /* ExpensesViewController.m */; };
-		EFC444231ACB08B000BEE364 /* BalancoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC444221ACB08B000BEE364 /* BalancoViewController.m */; };
 		F74E51F71AC4470B00BB5497 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F74E51F61AC4470B00BB5497 /* main.m */; };
 		F74E51FA1AC4470C00BB5497 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F74E51F91AC4470C00BB5497 /* AppDelegate.m */; };
 		F74E52001AC4470C00BB5497 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F74E51FE1AC4470C00BB5497 /* Main.storyboard */; };
@@ -35,14 +35,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A636F301ACE0B2100D0D088 /* BalancoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalancoViewController.h; sourceTree = "<group>"; };
+		0A636F311ACE0B2100D0D088 /* BalancoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalancoViewController.m; sourceTree = "<group>"; };
+		0A636F321ACE0B2100D0D088 /* EventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsViewController.h; sourceTree = "<group>"; };
+		0A636F331ACE0B2100D0D088 /* EventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsViewController.m; sourceTree = "<group>"; };
+		0A636F341ACE0B2100D0D088 /* ExpensesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpensesViewController.h; sourceTree = "<group>"; };
+		0A636F351ACE0B2100D0D088 /* ExpensesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpensesViewController.m; sourceTree = "<group>"; };
 		6FD2D5601ACC81A500403F26 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6FD2D5631ACC83B900403F26 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		EFC4441A1ACB06D400BEE364 /* EventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsViewController.h; sourceTree = "<group>"; };
-		EFC4441B1ACB06D400BEE364 /* EventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsViewController.m; sourceTree = "<group>"; };
-		EFC4441D1ACB07FD00BEE364 /* ExpensesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpensesViewController.h; sourceTree = "<group>"; };
-		EFC4441E1ACB07FD00BEE364 /* ExpensesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpensesViewController.m; sourceTree = "<group>"; };
-		EFC444211ACB08B000BEE364 /* BalancoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalancoViewController.h; sourceTree = "<group>"; };
-		EFC444221ACB08B000BEE364 /* BalancoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalancoViewController.m; sourceTree = "<group>"; };
 		F74E51F11AC4470B00BB5497 /* PassaChapeu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PassaChapeu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F74E51F51AC4470B00BB5497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F74E51F61AC4470B00BB5497 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -83,17 +83,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EFC444201ACB084300BEE364 /* views */ = {
+		0A636F2F1ACE0B2100D0D088 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				EFC444211ACB08B000BEE364 /* BalancoViewController.h */,
-				EFC444221ACB08B000BEE364 /* BalancoViewController.m */,
-				EFC4441A1ACB06D400BEE364 /* EventsViewController.h */,
-				EFC4441B1ACB06D400BEE364 /* EventsViewController.m */,
-				EFC4441D1ACB07FD00BEE364 /* ExpensesViewController.h */,
-				EFC4441E1ACB07FD00BEE364 /* ExpensesViewController.m */,
+				0A636F301ACE0B2100D0D088 /* BalancoViewController.h */,
+				0A636F311ACE0B2100D0D088 /* BalancoViewController.m */,
+				0A636F321ACE0B2100D0D088 /* EventsViewController.h */,
+				0A636F331ACE0B2100D0D088 /* EventsViewController.m */,
+				0A636F341ACE0B2100D0D088 /* ExpensesViewController.h */,
+				0A636F351ACE0B2100D0D088 /* ExpensesViewController.m */,
 			);
-			name = views;
+			path = views;
 			sourceTree = "<group>";
 		};
 		F74E51E81AC4470B00BB5497 = {
@@ -118,7 +118,7 @@
 		F74E51F31AC4470B00BB5497 /* PassaChapeu */ = {
 			isa = PBXGroup;
 			children = (
-				EFC444201ACB084300BEE364 /* views */,
+				0A636F2F1ACE0B2100D0D088 /* views */,
 				F74E521A1AC4478B00BB5497 /* models */,
 				F74E52261AC4485A00BB5497 /* Controller.h */,
 				F74E52271AC4485A00BB5497 /* Controller.m */,
@@ -274,14 +274,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FD2D5641ACC83B900403F26 /* DataModel.xcdatamodeld in Sources */,
+				0A636F361ACE0B2100D0D088 /* BalancoViewController.m in Sources */,
 				F74E52251AC4482200BB5497 /* Event.m in Sources */,
 				F74E521F1AC447CF00BB5497 /* Sharer.m in Sources */,
 				F74E51FA1AC4470C00BB5497 /* AppDelegate.m in Sources */,
 				F74E52221AC4480800BB5497 /* Expense.m in Sources */,
 				F74E52281AC4485A00BB5497 /* Controller.m in Sources */,
-				EFC4441F1ACB07FD00BEE364 /* ExpensesViewController.m in Sources */,
-				EFC4441C1ACB06D400BEE364 /* EventsViewController.m in Sources */,
-				EFC444231ACB08B000BEE364 /* BalancoViewController.m in Sources */,
+				0A636F381ACE0B2100D0D088 /* ExpensesViewController.m in Sources */,
+				0A636F371ACE0B2100D0D088 /* EventsViewController.m in Sources */,
 				F74E51F71AC4470B00BB5497 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
