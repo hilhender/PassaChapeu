@@ -69,6 +69,13 @@
     
 }
 
+- (IBAction)textValueChanged:(id)sender {
+    UITextField *textField = (UITextField*) sender;
+    
+    Sharer *sharer = [_controller getSharer:[[_tblPessoas indexPathForSelectedRow] row]];
+    sharer.contributedValue = [textField.text floatValue];
+}
+
 #pragma mark - Add Buttons
 
 - (IBAction)addExpense:(id)sender {
@@ -179,6 +186,7 @@
 
 #pragma mark - TableViews selection affairs
 
+int tapCount;
 - (void)deselectAllRows:(UITableView *)tableView animated:(BOOL)animated {
     for (NSIndexPath *indexPath in [tableView indexPathsForSelectedRows]) {
         [tableView deselectRowAtIndexPath:indexPath animated:animated];
@@ -207,7 +215,31 @@
     return indexPath;
 }
 
+- (void) singleTap :(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    tapCount = 0;
+}
+
+- (void) doubleTap :(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    tapCount = 0;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    tapCount++;
+    NSArray *array = [NSArray arrayWithObjects: tableView, indexPath, nil];
+    
+    switch (tapCount) {
+        case 1:
+            //[self performSelector:@selector(singleTap:) withObject:array afterDelay: .4];
+            //[self singleTap:tableView didSelectRowAtIndexPath:indexPath];
+            break;
+        case 2:
+            //[self singleTap:tableView didSelectRowAtIndexPath:indexPath];
+            break;
+        default:
+            break;
+    }
+    
+    
     NSUInteger section = [indexPath section];
     NSUInteger row = [indexPath row];
 

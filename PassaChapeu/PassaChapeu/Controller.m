@@ -27,7 +27,7 @@ same as the AppDelegate one
 // FIXME: por quê o erro a classe Controller não pode utilizar a notação ponto para utilizar o método de manipulação de funcionalidade do coredata?
 // ???:
 // !!!:
-Controller.managedObjectContext = self.managedObjectContext;
+//Controller.managedObjectContext = self.managedObjectContext;
 
 
 /*! Default constructor. 

@@ -255,6 +255,9 @@
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="229" y="563" width="97" height="30"/>
                                 </variation>
+                                <connections>
+                                    <action selector="textValueChanged:" destination="ker-IL-lG1" eventType="editingChanged" id="x3w-dH-NTr"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
