@@ -23,7 +23,9 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 
-/* adding support content to Core Data*/
+/* Methods to support content to Core Data*/
+/*! save context of event, sharer and expense
+ */
 - (void)saveContext{
     NSError *error = nil;
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
@@ -34,7 +36,8 @@
         }
     }
 }
-
+/*! 
+ */
 - (NSManagedObjectContext *)managedObjectContext{
     if (_managedObjectContext != nil) {
         return _managedObjectContext;
@@ -62,7 +65,8 @@
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
-    
+// TODO: linkar nossa aplicação após acertado o modelo que esta na pasta models: DataModel.xcdatamodeld
+// TODO: qual é o diretório da aplicação que contém o arquivo salvo, quais os métodos que me retornam isso?
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"NAMEOFYOURMODELHERE.sqlite"];
     
     NSError *error = nil;

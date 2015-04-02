@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 #import "Sharer.h"
 #import "Expense.h"
 #import "Event.h"
 
 @interface Controller : NSObject
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 
 @property Event* event;
 
