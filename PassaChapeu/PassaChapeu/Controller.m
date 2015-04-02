@@ -19,7 +19,7 @@
  */
 @synthesize managedObjectContext = _managedObjectContext;
 
-/*! Core Data: ViewController is created in this class then set the managedOjectContext to be the
+/*! Core Data: Controller is created in this class then set the managedOjectContext to be the
 same as the AppDelegate one
  */
 // MARK:
