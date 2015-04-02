@@ -12,7 +12,6 @@
 		EFC4441C1ACB06D400BEE364 /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC4441B1ACB06D400BEE364 /* EventsViewController.m */; };
 		EFC4441F1ACB07FD00BEE364 /* ExpensesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC4441E1ACB07FD00BEE364 /* ExpensesViewController.m */; };
 		EFC444231ACB08B000BEE364 /* BalancoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC444221ACB08B000BEE364 /* BalancoViewController.m */; };
-		EFC59BE61ACADD5800F17FE4 /* ExpenseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC59BE51ACADD5800F17FE4 /* ExpenseDetailViewController.m */; };
 		F74E51F71AC4470B00BB5497 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F74E51F61AC4470B00BB5497 /* main.m */; };
 		F74E51FA1AC4470C00BB5497 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F74E51F91AC4470C00BB5497 /* AppDelegate.m */; };
 		F74E52001AC4470C00BB5497 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F74E51FE1AC4470C00BB5497 /* Main.storyboard */; };
@@ -44,8 +43,6 @@
 		EFC4441E1ACB07FD00BEE364 /* ExpensesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpensesViewController.m; sourceTree = "<group>"; };
 		EFC444211ACB08B000BEE364 /* BalancoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BalancoViewController.h; sourceTree = "<group>"; };
 		EFC444221ACB08B000BEE364 /* BalancoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalancoViewController.m; sourceTree = "<group>"; };
-		EFC59BE41ACADD5800F17FE4 /* ExpenseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpenseDetailViewController.h; sourceTree = "<group>"; };
-		EFC59BE51ACADD5800F17FE4 /* ExpenseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpenseDetailViewController.m; sourceTree = "<group>"; };
 		F74E51F11AC4470B00BB5497 /* PassaChapeu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PassaChapeu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F74E51F51AC4470B00BB5497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F74E51F61AC4470B00BB5497 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -131,8 +128,6 @@
 				F74E52011AC4470C00BB5497 /* Images.xcassets */,
 				F74E52031AC4470C00BB5497 /* LaunchScreen.xib */,
 				F74E51F41AC4470B00BB5497 /* Supporting Files */,
-				EFC59BE41ACADD5800F17FE4 /* ExpenseDetailViewController.h */,
-				EFC59BE51ACADD5800F17FE4 /* ExpenseDetailViewController.m */,
 			);
 			path = PassaChapeu;
 			sourceTree = "<group>";
@@ -283,7 +278,6 @@
 				F74E521F1AC447CF00BB5497 /* Sharer.m in Sources */,
 				F74E51FA1AC4470C00BB5497 /* AppDelegate.m in Sources */,
 				F74E52221AC4480800BB5497 /* Expense.m in Sources */,
-				EFC59BE61ACADD5800F17FE4 /* ExpenseDetailViewController.m in Sources */,
 				F74E52281AC4485A00BB5497 /* Controller.m in Sources */,
 				EFC4441F1ACB07FD00BEE364 /* ExpensesViewController.m in Sources */,
 				EFC4441C1ACB06D400BEE364 /* EventsViewController.m in Sources */,

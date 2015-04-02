@@ -71,9 +71,9 @@
         
         /* Exibe. */
         self.lblInfo.text = @"Valor contribuido:\n\nTotal:\n\nSaldo:";
-        self.lblContributedValue.text = [NSString stringWithFormat:@"%.2f", contributedValue];
-        self.lblTotalCost.text = [NSString stringWithFormat:@"%.2f", totalCost];
-        self.lblBalance.text = [NSString stringWithFormat:@"%.2f", balance];
+        self.lblContributedValue.text = [NSString stringWithFormat:@"R$%.2f", contributedValue];
+        self.lblTotalCost.text = [NSString stringWithFormat:@"R$%.2f", totalCost];
+        self.lblBalance.text = [NSString stringWithFormat:@"R$%.2f", balance];
     
 }
 
@@ -129,7 +129,7 @@
     /* Exibe. */
     self.lblInfo.text = @"Gasto por pessoa:";
     self.lblTotalCost.text = [NSString stringWithFormat:@"R$%.2f", costPerPerson];
-    
+
 }
 
 - (IBAction)textValueChanged:(id)sender {
@@ -256,6 +256,24 @@
     for (NSIndexPath *indexPath in [tableView indexPathsForSelectedRows]) {
         [tableView deselectRowAtIndexPath:indexPath animated:animated];
     }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"teste");
+    NSUInteger row = [indexPath row];
+    if([tableView isEqual: _tblPessoas]){
+        [_controller removeSharer:[_controller getSharer:row]];
+        [_tblPessoas reloadData];
+    } else if([tableView isEqual: _tblGastos]){
+        [_controller removeExpense:[_controller getExpense:row]];
+        [_tblGastos reloadData];
+    }
+    
+    [self setEventInfo];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(3_0) {
+    return @"X";
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
