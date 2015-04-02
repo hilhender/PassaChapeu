@@ -25,6 +25,7 @@
     self.sharers = [NSMutableArray array];
     self.expenses = [NSMutableArray array];
     
+    
     return self;
 }
 
@@ -49,6 +50,10 @@
 
 - (Expense*) getExpense: (NSUInteger) row {
     return [_expenses objectAtIndex:row];
+}
+
+- (NSUInteger) getExpenseID: (Expense*) expense {
+    return [_expenses indexOfObject:expense];
 }
 
 /* Remove gasto. */

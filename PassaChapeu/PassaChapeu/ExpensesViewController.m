@@ -25,6 +25,9 @@
 
 @implementation ExpensesViewController {
     NSMutableArray *_expenses;
+    
+    //Armazena o objeto (pessoa/gasto) a ser editado
+    id objectSelectedToBeEdited;
 }
 
 @synthesize lblEventName;
@@ -90,7 +93,7 @@
         [_tblGastos reloadData];
         
     }];
-    
+
     [alert addAction:cancelAction];
     [alert addAction:okAction];
     
@@ -163,9 +166,45 @@
     else
         return nil;
 }
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if([tableView isEqual: _tblPessoas])
+        return [_event.sharers count];
     
--(void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"saiu");
+    if([tableView isEqual: _tblGastos])
+        return [_event.expenses count];
+    
+    return 0; //soh pra nao correr o risco de nao retornar nada
+}
+
+#pragma mark - TableViews selection affairs
+
+- (void)deselectAllRows:(UITableView *)tableView animated:(BOOL)animated {
+    for (NSIndexPath *indexPath in [tableView indexPathsForSelectedRows]) {
+        [tableView deselectRowAtIndexPath:indexPath animated:animated];
+    }
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if([tableView isEqual: _tblPessoas]){
+        if ([_tblPessoas indexPathForSelectedRow] == indexPath) {
+            [_tblPessoas deselectRowAtIndexPath:indexPath animated:NO];
+            [self deselectAllRows:_tblGastos animated:NO];
+            [_tblGastos setAllowsMultipleSelection:NO];
+            [self setEventInfo];
+            
+            indexPath = nil;
+        }
+    } else if([tableView isEqual: _tblGastos]){
+        if ([_tblGastos indexPathForSelectedRow] == indexPath) {
+            [_tblGastos deselectRowAtIndexPath:indexPath animated:NO];
+            [self deselectAllRows:_tblPessoas animated:NO];
+            [_tblPessoas setAllowsMultipleSelection:NO];
+            [self setEventInfo];
+            indexPath = nil;
+        }
+    }
+    return indexPath;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -176,20 +215,17 @@
      */
     NSUInteger section = [indexPath section];
     NSUInteger row = [indexPath row];
-    
-    
-    
+
     if([tableView isEqual: _tblPessoas]){
         /* Se pessoa estiver selecionado. */
         Sharer *sharer = [_controller getSharer:row];
 
-        
         if ([_tblGastos allowsMultipleSelection] || ![_tblPessoas allowsMultipleSelection]) {
             /* Entra quando estou focado em atribuir gastos a uma pessoa. Estou editando uma pessoa. */
             [_tblGastos setAllowsMultipleSelection:YES];
             [_tblPessoas setAllowsMultipleSelection:NO];
-            
-            
+            objectSelectedToBeEdited = sharer;
+
             /* Quais informacoes a exibir? */
             [self.lblContributedValue setHidden:YES];
             [self.lblTotalCost setHidden:NO];
@@ -202,6 +238,10 @@
             totalCost = sharer.evaluateBalance;
             balance = contributedValue - totalCost;
             
+            for (Expense* expense in sharer.expenses) {
+                //[_controller getExpenseID:expense];
+            }
+            
             /* Exibe. */
             self.lblInfo.text = @"Valor contribuido:\nTotal gastos:\nSaldo:";
             self.txtContributedValue.text = [NSString stringWithFormat:@"%.2f", contributedValue];
@@ -212,8 +252,14 @@
             [_tblGastos setAllowsMultipleSelection:NO];
             [_tblPessoas setAllowsMultipleSelection:YES];
             
+            /*linka ou deslinka pessoa ao gasto*/
+            Expense *expense = objectSelectedToBeEdited;
+            if([expense.sharers containsObject: sharer])
+                [_controller unlinkExpense: expense ToSharer: sharer];
+            else
+                [_controller linkExpense: expense ToSharer: sharer];
+
         }
-        
     }
 
     else if([tableView isEqual: _tblGastos]){
@@ -224,6 +270,7 @@
         if (![_tblGastos allowsMultipleSelection] || [_tblPessoas allowsMultipleSelection]) {
             [_tblGastos setAllowsMultipleSelection:NO];
             [_tblPessoas setAllowsMultipleSelection:YES];
+            objectSelectedToBeEdited = expense;
 
             /* Quais informacoes a exibir? */
             [self.lblContributedValue setHidden:NO];
@@ -245,6 +292,14 @@
         } else {
             [_tblGastos setAllowsMultipleSelection:YES];
             [_tblPessoas setAllowsMultipleSelection:NO];
+            
+            /*linka ou deslinka gasto a pessoa*/
+            Sharer *sharer = objectSelectedToBeEdited;
+            if([sharer.expenses containsObject: expense])
+                [_controller unlinkExpense: expense ToSharer: sharer];
+            else
+                [_controller linkExpense: expense ToSharer: sharer];
+    
         }
 
     }
@@ -271,17 +326,6 @@
     return cell;
      
 }*/
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if([tableView isEqual: _tblPessoas])
-        return [_event.sharers count];
-    
-    if([tableView isEqual: _tblGastos])
-        return [_event.expenses count];
-    
-    return 0; //soh pra nao correr o risco de nao retornar nada
-}
 
 
 

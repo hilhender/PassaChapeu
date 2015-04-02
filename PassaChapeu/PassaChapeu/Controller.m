@@ -77,6 +77,10 @@ Controller.managedObjectContext = self.managedObjectContext;
     return [_event getExpense:row];
 }
 
+- (NSUInteger) getExpenseID: (Expense*) expense {
+    return [_event getExpenseID:expense];
+}
+
 /* Remove gasto... */
 /*! Remove gasto.
     /param Expense: string representando o nome do gasto
