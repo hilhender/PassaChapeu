@@ -11,9 +11,7 @@
 
 @interface Sharer : NSObject
 
-
 @property int uniqueID;
-
 @property NSString* name;
 @property NSMutableArray* expenses;
 @property float contributedValue;
