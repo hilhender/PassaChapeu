@@ -14,7 +14,8 @@
 
 @implementation Controller
 
-/* Default constructor. */
+/*! Default constructor. 
+ */
 - (Controller*) initWithEvent : (Event*) event {
     if (event == nil) {
         _event = [[Event alloc] init];
@@ -24,13 +25,17 @@
     return self;
 }
 
-/* Adiciona novo participante. */
+/*! Adiciona novo participante.
+    \param NString: nome do participante
+*/
 - (void) addNewSharer: (NSString*) newSharerName {
     Sharer* sharer = [[Sharer alloc] initWithName: newSharerName];
     [self.event addNewSharer: sharer];
 }
 
-/* Remove participante... */
+/*! Remove participante em um evento
+    \param Sharer  participante
+ */
 - (void) removeSharer: (Sharer*) sharer {
     /* ...do evento. */
     [self.event removeSharer:sharer];
@@ -41,13 +46,17 @@
     }
 }
 
-/* Adiciona gasto. */
+/*! Adiciona novo gasto.
+    \param String: string convertido em float representando o gasto
+ */
 - (void) addNewExpense: (NSString*)expenseToBeAdded withValue: (float)value{
     Expense* expense = [[Expense alloc] initWithName:expenseToBeAdded andValue: value];
     [self.event addNewExpense:expense];
 }
 
-/* Remove gasto... */
+/*! Remove gasto.
+    /param Expense: string representando o nome do gasto
+*/
 - (void) removeExpense: (Expense*) expense {
     /* ...do evento. */
     [self.event removeExpense:expense];
@@ -58,23 +67,29 @@
     }
 }
 
-/* Retorna os participantes. */
+/*! Método Getter: Retorna os participantes de um dado EVENTO.
+ */
 - (NSMutableArray*) getSharers {
     return self.event.sharers;
 }
 
-/* Retorna os gastos. */
+/*! Método Getter: Retorna os gastos de um dado EVENTO
+ */
 - (NSMutableArray*) getExpenses {
     return self.event.expenses;
 }
 
-/* Vincula participantes e gastos. */
+/*! Vincula participantes e gastos. 
+ \param Expense: Gasto
+ \param Sharer: Paticipante
+ \return nenhum
+ */
 - (void) linkExpense: (Expense*) expense ToSharer: (Sharer*) sharer {
     [sharer assignExpense: expense];
     [expense assignSharer: sharer];
 }
 
-/* Desvincula participantes e gastos. */
+/*! Desvincula participantes e gastos. */
 - (void) unlinkExpense: (Expense*) expense ToSharer: (Sharer*) sharer {
     [sharer unassingExpense: expense];
     [expense unassingSharer: sharer];
