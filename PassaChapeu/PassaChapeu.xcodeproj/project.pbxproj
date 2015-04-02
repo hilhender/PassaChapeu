@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6FD2D5611ACC81A500403F26 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FD2D5601ACC81A500403F26 /* CoreData.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		6FD2D5641ACC83B900403F26 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6FD2D5621ACC83B900403F26 /* DataModel.xcdatamodeld */; };
 		EFC4441C1ACB06D400BEE364 /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC4441B1ACB06D400BEE364 /* EventsViewController.m */; };
 		EFC4441F1ACB07FD00BEE364 /* ExpensesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC4441E1ACB07FD00BEE364 /* ExpensesViewController.m */; };
 		EFC444231ACB08B000BEE364 /* BalancoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC444221ACB08B000BEE364 /* BalancoViewController.m */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6FD2D5601ACC81A500403F26 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		6FD2D5631ACC83B900403F26 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		EFC4441A1ACB06D400BEE364 /* EventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsViewController.h; sourceTree = "<group>"; };
 		EFC4441B1ACB06D400BEE364 /* EventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsViewController.m; sourceTree = "<group>"; };
 		EFC4441D1ACB07FD00BEE364 /* ExpensesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpensesViewController.h; sourceTree = "<group>"; };
@@ -68,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FD2D5611ACC81A500403F26 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +102,7 @@
 		F74E51E81AC4470B00BB5497 = {
 			isa = PBXGroup;
 			children = (
+				6FD2D5601ACC81A500403F26 /* CoreData.framework */,
 				F74E51F31AC4470B00BB5497 /* PassaChapeu */,
 				F74E520D1AC4470C00BB5497 /* PassaChapeuTests */,
 				F74E51F21AC4470B00BB5497 /* Products */,
@@ -166,6 +172,7 @@
 				F74E52211AC4480800BB5497 /* Expense.m */,
 				F74E52231AC4482200BB5497 /* Event.h */,
 				F74E52241AC4482200BB5497 /* Event.m */,
+				6FD2D5621ACC83B900403F26 /* DataModel.xcdatamodeld */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -271,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FD2D5641ACC83B900403F26 /* DataModel.xcdatamodeld in Sources */,
 				F74E52251AC4482200BB5497 /* Event.m in Sources */,
 				F74E521F1AC447CF00BB5497 /* Sharer.m in Sources */,
 				F74E51FA1AC4470C00BB5497 /* AppDelegate.m in Sources */,
@@ -489,6 +497,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6FD2D5621ACC83B900403F26 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6FD2D5631ACC83B900403F26 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 6FD2D5631ACC83B900403F26 /* DataModel.xcdatamodel */;
+			name = DataModel.xcdatamodeld;
+			path = ../Resources/DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F74E51E91AC4470B00BB5497 /* Project object */;
 }
