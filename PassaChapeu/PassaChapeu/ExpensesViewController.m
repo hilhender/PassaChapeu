@@ -69,6 +69,13 @@
     
 }
 
+- (IBAction)textValueChanged:(id)sender {
+    UITextField *textField = (UITextField*) sender;
+    
+    Sharer *sharer = [_controller getSharer:[[_tblPessoas indexPathForSelectedRow] row]];
+    sharer.contributedValue = [textField.text floatValue];
+}
+
 #pragma mark - Add Buttons
 
 - (IBAction)addExpense:(id)sender {
@@ -179,6 +186,7 @@
 
 #pragma mark - TableViews selection affairs
 
+int tapCount;
 - (void)deselectAllRows:(UITableView *)tableView animated:(BOOL)animated {
     for (NSIndexPath *indexPath in [tableView indexPathsForSelectedRows]) {
         [tableView deselectRowAtIndexPath:indexPath animated:animated];
@@ -207,12 +215,31 @@
     return indexPath;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void) singleTap :(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    tapCount = 0;
+}
 
-    /*
-     [_tblGastos setAllowsMultipleSelection:YES];
-     [_tblPessoas setAllowsMultipleSelection:YES];
-     */
+- (void) doubleTap :(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    tapCount = 0;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    tapCount++;
+    NSArray *array = [NSArray arrayWithObjects: tableView, indexPath, nil];
+    
+    switch (tapCount) {
+        case 1:
+            //[self performSelector:@selector(singleTap:) withObject:array afterDelay: .4];
+            //[self singleTap:tableView didSelectRowAtIndexPath:indexPath];
+            break;
+        case 2:
+            //[self singleTap:tableView didSelectRowAtIndexPath:indexPath];
+            break;
+        default:
+            break;
+    }
+    
+    
     NSUInteger section = [indexPath section];
     NSUInteger row = [indexPath row];
 
@@ -238,8 +265,10 @@
             totalCost = sharer.evaluateBalance;
             balance = contributedValue - totalCost;
             
+            [self deselectAllRows:_tblGastos animated:NO];
             for (Expense* expense in sharer.expenses) {
-                //[_controller getExpenseID:expense];
+                NSUInteger row = [_controller getExpenseID:expense];
+                [_tblGastos selectRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
             }
             
             /* Exibe. */
@@ -254,9 +283,10 @@
             
             /*linka ou deslinka pessoa ao gasto*/
             Expense *expense = objectSelectedToBeEdited;
-            if([expense.sharers containsObject: sharer])
+            if([expense.sharers containsObject: sharer]) {
                 [_controller unlinkExpense: expense ToSharer: sharer];
-            else
+                NSLog(@"saiu");
+            } else
                 [_controller linkExpense: expense ToSharer: sharer];
 
         }
@@ -285,7 +315,13 @@
             } else {
                 costPerPerson = expense.value / expense.getNumberOfSharers;
             }
-        
+            
+            [self deselectAllRows:_tblPessoas animated:NO];
+            for (Sharer* sharer in expense.sharers) {
+                NSUInteger row = [_controller getSharerID:sharer];
+                [_tblPessoas selectRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+            }
+            
             /* Exibe. */
             self.lblInfo.text = @"Gasto por pessoa:";
             self.lblContributedValue.text = [NSString stringWithFormat:@"R$%.2f", costPerPerson];
@@ -295,38 +331,41 @@
             
             /*linka ou deslinka gasto a pessoa*/
             Sharer *sharer = objectSelectedToBeEdited;
-            if([sharer.expenses containsObject: expense])
+            if([sharer.expenses containsObject: expense]) {
                 [_controller unlinkExpense: expense ToSharer: sharer];
+            NSLog(@"saiu");
+        }
             else
                 [_controller linkExpense: expense ToSharer: sharer];
     
         }
 
     }
-    
-    
- 
-    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-    
-    
-    
-    
-    
-    
-    
-   /*
- 
-    static NSString *CellIdentifier = @"EventCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    Event *event = _eventsOnMemory[indexPath.row];
-    cell.textLabel.text = event.name;
-    
-    return cell;
-     
-}*/
 
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(3_0){
+    if([tableView isEqual: _tblPessoas]){
+        if ([_tblGastos allowsMultipleSelection] || ![_tblPessoas allowsMultipleSelection]){
+            [self deselectAllRows:_tblPessoas animated: YES];
+        }
+        else{
+            Expense *expense = objectSelectedToBeEdited;
+            Sharer *sharer = [_controller getSharer: indexPath.row];
+            [_controller unlinkExpense:expense ToSharer:sharer];
+        }
+    }
+    if([tableView isEqual: _tblGastos]){
+        if ([_tblPessoas allowsMultipleSelection] || ![_tblGastos allowsMultipleSelection]){
+            [self deselectAllRows:_tblGastos animated: YES];
+        }
+        else{
+            Sharer *sharer = objectSelectedToBeEdited;
+            Expense *expense = [_controller getExpense: indexPath.row];
+            [_controller unlinkExpense:expense ToSharer:sharer];
+        }
+    }
+}
 
 
 #pragma mark - Navigation

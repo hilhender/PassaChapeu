@@ -38,6 +38,10 @@
     return [_sharers objectAtIndex:row];
 }
 
+- (NSUInteger) getSharerID: (Sharer*) sharer {
+    return [_sharers indexOfObject:sharer];
+}
+
 /* Remove participante. */
 - (void) removeSharer: (Sharer*) sharer {
     [self.sharers removeObject:sharer];

@@ -50,6 +50,10 @@ same as the AppDelegate one
     return [_event getSharer:row];
 }
 
+- (NSUInteger) getSharerID: (Sharer*) sharer {
+    return [_event getSharerID:sharer];
+}
+
 
 /* Remove participante... */
 /*! Remove participante em um evento
