@@ -19,6 +19,7 @@
 
 - (void) addNewSharer: (NSString*) newSharerName;
 - (Sharer*) getSharer: (NSUInteger) row;
+- (NSUInteger) getSharerID: (Sharer*) sharer;
 - (void) removeSharer: (Sharer*) sharerToBeRemoved;
 
 - (void) addNewExpense: (NSString*) expenseToBeAdded withValue: (float) value;

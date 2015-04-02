@@ -208,11 +208,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    /*
-     [_tblGastos setAllowsMultipleSelection:YES];
-     [_tblPessoas setAllowsMultipleSelection:YES];
-     */
     NSUInteger section = [indexPath section];
     NSUInteger row = [indexPath row];
 
@@ -238,8 +233,10 @@
             totalCost = sharer.evaluateBalance;
             balance = contributedValue - totalCost;
             
+            [self deselectAllRows:_tblGastos animated:NO];
             for (Expense* expense in sharer.expenses) {
-                //[_controller getExpenseID:expense];
+                NSUInteger row = [_controller getExpenseID:expense];
+                [_tblGastos selectRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
             }
             
             /* Exibe. */
@@ -254,9 +251,10 @@
             
             /*linka ou deslinka pessoa ao gasto*/
             Expense *expense = objectSelectedToBeEdited;
-            if([expense.sharers containsObject: sharer])
+            if([expense.sharers containsObject: sharer]) {
                 [_controller unlinkExpense: expense ToSharer: sharer];
-            else
+                NSLog(@"saiu");
+            } else
                 [_controller linkExpense: expense ToSharer: sharer];
 
         }
@@ -285,7 +283,13 @@
             } else {
                 costPerPerson = expense.value / expense.getNumberOfSharers;
             }
-        
+            
+            [self deselectAllRows:_tblPessoas animated:NO];
+            for (Sharer* sharer in expense.sharers) {
+                NSUInteger row = [_controller getSharerID:sharer];
+                [_tblPessoas selectRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+            }
+            
             /* Exibe. */
             self.lblInfo.text = @"Gasto por pessoa:";
             self.lblContributedValue.text = [NSString stringWithFormat:@"R$%.2f", costPerPerson];
@@ -295,18 +299,16 @@
             
             /*linka ou deslinka gasto a pessoa*/
             Sharer *sharer = objectSelectedToBeEdited;
-            if([sharer.expenses containsObject: expense])
+            if([sharer.expenses containsObject: expense]) {
                 [_controller unlinkExpense: expense ToSharer: sharer];
+            NSLog(@"saiu");
+        }
             else
                 [_controller linkExpense: expense ToSharer: sharer];
     
         }
 
     }
-    
-    
- 
-    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
     
     
