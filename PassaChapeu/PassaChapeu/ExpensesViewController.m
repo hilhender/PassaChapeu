@@ -25,7 +25,7 @@
 
 @implementation ExpensesViewController {
     NSMutableArray *_expenses;
-    
+
     //Armazena o objeto (pessoa/gasto) a ser editado
     id objectSelectedToBeEdited;
 }
@@ -49,6 +49,14 @@
 
 - (void)setEventInfo {
         /* Se nada estiver selecionado. */
+    [_tblGastos setAllowsMultipleSelection:NO];
+    [_tblPessoas setAllowsMultipleSelection:NO];
+    
+    objectSelectedToBeEdited = nil;
+    [self deselectAllRows:_tblGastos animated:NO];
+    [self deselectAllRows:_tblPessoas animated:NO];
+    
+    
         /* Quais informacoes a exibir? */
         [self.lblContributedValue setHidden:NO];
         [self.lblTotalCost setHidden:NO];
@@ -141,6 +149,7 @@
         [_event addNewExpense: newExpense];
         [_tblGastos reloadData];
         
+        [self setEventInfo];
     }];
 
     [alert addAction:cancelAction];
@@ -173,6 +182,8 @@
         Sharer *newSharer = [[Sharer alloc] initWithName:name];
         [_event addNewSharer: newSharer];
         [_tblPessoas reloadData];
+        
+        [self setEventInfo];
     }];
     
     [alert addAction:cancelAction];
