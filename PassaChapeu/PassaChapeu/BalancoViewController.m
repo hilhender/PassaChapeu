@@ -26,9 +26,9 @@
     NSMutableString *text = [[NSMutableString alloc] init];
 
     [text appendString:@"Resumo Evento\n\n"];
-    [text appendFormat:@"  %-24s R$%.2f\n", "Valor gasto:", _controller.getTotalCost];
-    [text appendFormat:@"  %-24s R$%.2f\n", "Valor contribuido:", _controller.getContributedValue];
-    [text appendFormat:@"  %-24s R$%.2f\n", "Subtotal:", _controller.getTotalCost - _controller.getContributedValue];
+    [text appendFormat:@"  %-22s R$%.2f\n", "Valor gasto:", _controller.getTotalCost];
+    [text appendFormat:@"  %-22s R$%.2f\n", "Valor contribuido:", _controller.getContributedValue];
+    [text appendFormat:@"  %-22s R$%.2f\n", "Subtotal:", _controller.getTotalCost - _controller.getContributedValue];
 
     
     [text appendString:@"\nDetalhes Pessoa\n"];
@@ -37,8 +37,8 @@
         [text appendFormat:@"  %@\n", sharer.name];
         for (Expense *expense in sharer.expenses) {
             [text appendFormat:@"    %@\n", expense.name];
-            [text appendFormat:@"      %-20s R$%.2f\n", "Preco:", expense.value];
-            [text appendFormat:@"      %-20s R$%.2f\n", "Preco por pessoa:", expense.value / expense.getNumberOfSharers];
+            [text appendFormat:@"      %-18s R$%.2f\n", "Preco:", expense.value];
+            [text appendFormat:@"      %-18s R$%.2f\n", "Preco por pessoa:", expense.value / expense.getNumberOfSharers];
         }
         [text appendFormat:@"    %-20s R$%.2f\n", "Valor contribuido:", sharer.contributedValue];
         [text appendFormat:@"    %-20s R$%.2f\n", "Valor gasto:", sharer.evaluateBalance];
@@ -50,12 +50,12 @@
 
     for (Expense *expense in _controller.getExpenses) {
         [text appendFormat:@"  %@\n", expense.name];
-        [text appendFormat:@"    %-22s R$%.2f\n", "Preco:", expense.value];
-        [text appendFormat:@"    %-22s %d\n", "Participantes:", (int)expense.getNumberOfSharers];
+        [text appendFormat:@"    %-20s R$%.2f\n", "Preco:", expense.value];
+        [text appendFormat:@"    %-20s %d\n", "Participantes:", (int)expense.getNumberOfSharers];
         for (Sharer *sharer in expense.sharers) {
             [text appendFormat:@"      %@\n", sharer.name];
         }
-        [text appendFormat:@"    %-22s R$%.2f\n", "Valor por pessoa:", expense.value / expense.getNumberOfSharers];
+        [text appendFormat:@"    %-20s R$%.2f\n", "Valor por pessoa:", expense.value / expense.getNumberOfSharers];
     }
 
     /* Seta edicao, fonte da text field e exibe. */
