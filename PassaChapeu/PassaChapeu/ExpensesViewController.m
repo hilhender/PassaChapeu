@@ -200,18 +200,16 @@
      */
     NSUInteger section = [indexPath section];
     NSUInteger row = [indexPath row];
-    
+
     if([tableView isEqual: _tblPessoas]){
         /* Se pessoa estiver selecionado. */
         Sharer *sharer = [_controller getSharer:row];
 
-        
         if ([_tblGastos allowsMultipleSelection] || ![_tblPessoas allowsMultipleSelection]) {
             /* Entra quando estou focado em atribuir gastos a uma pessoa. Estou editando uma pessoa. */
             [_tblGastos setAllowsMultipleSelection:YES];
             [_tblPessoas setAllowsMultipleSelection:NO];
-            
-            
+
             /* Quais informacoes a exibir? */
             [self.lblContributedValue setHidden:YES];
             [self.lblTotalCost setHidden:NO];
@@ -224,6 +222,10 @@
             totalCost = sharer.evaluateBalance;
             balance = contributedValue - totalCost;
             
+            for (Expense* expense in sharer.expenses) {
+                [_controller getExpenseID:expense];
+            }
+            
             /* Exibe. */
             self.lblInfo.text = @"Valor contribuido:\nTotal gastos:\nSaldo:";
             self.txtContributedValue.text = [NSString stringWithFormat:@"%.2f", contributedValue];
@@ -235,7 +237,6 @@
             [_tblPessoas setAllowsMultipleSelection:YES];
             
         }
-        
     }
 
     else if([tableView isEqual: _tblGastos]){

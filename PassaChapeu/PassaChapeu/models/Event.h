@@ -26,6 +26,7 @@
 
 - (void) addNewExpense: (Expense*) expenseToBeAdded;
 - (Expense*) getExpense: (NSUInteger) row;
+- (NSUInteger) getExpenseID: (Expense*) expense;
 - (void) removeExpense: (Expense*) expenseToBeRemoved;
 
 - (float) getContributedValue;

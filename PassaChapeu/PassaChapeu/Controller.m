@@ -62,6 +62,10 @@
     return [_event getExpense:row];
 }
 
+- (NSUInteger) getExpenseID: (Expense*) expense {
+    return nil;
+}
+
 /* Remove gasto... */
 /*! Remove gasto.
     /param Expense: string representando o nome do gasto
