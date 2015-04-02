@@ -90,7 +90,7 @@
         [_tblGastos reloadData];
         
     }];
-    
+
     [alert addAction:cancelAction];
     [alert addAction:okAction];
     
@@ -163,9 +163,33 @@
     else
         return nil;
 }
-    
--(void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"saiu");
+
+- (void)deselectAllRows:(UITableView *)tableView animated:(BOOL)animated {
+    for (NSIndexPath *indexPath in [tableView indexPathsForSelectedRows]) {
+        [tableView deselectRowAtIndexPath:indexPath animated:animated];
+    }
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if([tableView isEqual: _tblPessoas]){
+        if ([_tblPessoas indexPathForSelectedRow] == indexPath) {
+            [_tblPessoas deselectRowAtIndexPath:indexPath animated:NO];
+            [self deselectAllRows:_tblGastos animated:NO];
+            [_tblGastos setAllowsMultipleSelection:NO];
+            [self setEventInfo];
+            
+            indexPath = nil;
+        }
+    } else if([tableView isEqual: _tblGastos]){
+        if ([_tblGastos indexPathForSelectedRow] == indexPath) {
+            [_tblGastos deselectRowAtIndexPath:indexPath animated:NO];
+            [self deselectAllRows:_tblPessoas animated:NO];
+            [_tblPessoas setAllowsMultipleSelection:NO];
+            [self setEventInfo];
+            indexPath = nil;
+        }
+    }
+    return indexPath;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -176,8 +200,6 @@
      */
     NSUInteger section = [indexPath section];
     NSUInteger row = [indexPath row];
-    
-    
     
     if([tableView isEqual: _tblPessoas]){
         /* Se pessoa estiver selecionado. */
