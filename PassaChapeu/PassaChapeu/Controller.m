@@ -18,11 +18,8 @@
 /*! Default constructor. 
  */
 - (Controller*) initWithEvent : (Event*) event {
-    if (event == nil) {
-        _event = [[Event alloc] init];
-    } else {
-        _event = event;
-    }
+    _event = event;
+    
     return self;
 }
 
@@ -31,9 +28,15 @@
 */
 - (void) addNewSharer: (NSString*) newSharerName {
     Sharer* sharer = [[Sharer alloc] initWithName: newSharerName];
-    [self.event addNewSharer: sharer];
+    [_event addNewSharer: sharer];
 }
 
+- (Sharer*) getSharer: (NSUInteger) row {
+    return [_event getSharer:row];
+}
+
+
+/* Remove participante... */
 /*! Remove participante em um evento
     \param Sharer  participante
  */
@@ -55,6 +58,11 @@
     [self.event addNewExpense:expense];
 }
 
+- (Expense*) getExpense: (NSUInteger) row {
+    return [_event getExpense:row];
+}
+
+/* Remove gasto... */
 /*! Remove gasto.
     /param Expense: string representando o nome do gasto
 */

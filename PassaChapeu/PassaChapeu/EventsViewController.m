@@ -13,31 +13,24 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *EventsTable;
 
-@property NSMutableArray* events;
+//@property NSMutableArray* events;
 @property NSMutableArray* eventsOnMemory;
 
 @end
 
-@implementation EventsViewController {
-    NSString *_newEventName;
-}
+@implementation EventsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _events = [[NSMutableArray alloc] init];
+    //_events = [[NSMutableArray alloc] init];
     _eventsOnMemory = [[NSMutableArray alloc] init];
     
     [_eventsOnMemory addObject:[[Event alloc] initWithName:@"Churcao"]];
     [_eventsOnMemory addObject:[[Event alloc] initWithName:@"Praia"]];
     [_eventsOnMemory addObject:[[Event alloc] initWithName:@"Macarronada"]];
     [_eventsOnMemory addObject:[[Event alloc] initWithName:@"Churcao"]];
-    
-    [_events addObject:@"Churcao"];
-    [_events addObject:@"Praia"];
-    [_events addObject:@"Macarronada"];
-    [_events addObject:@"Churcao"];
 
 }
 
@@ -57,8 +50,8 @@
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         /* Implementa o botão OK. */
         UITextField *eventName = alert.textFields.firstObject;
-        _newEventName = eventName.text;
-        [_events addObject: eventName.text];
+        //newEventName = eventName.text;
+        [_eventsOnMemory addObject: [[Event alloc] initWithName: eventName.text]];
         [self.EventsTable reloadData];
 
         [self performSegueWithIdentifier:@"newEvent" sender:self];
@@ -80,8 +73,8 @@
     static NSString *CellIdentifier = @"EventCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSString *event = _events[indexPath.row];
-    cell.textLabel.text = event;
+    Event *event = _eventsOnMemory[indexPath.row];
+    cell.textLabel.text = event.name;
 
     return cell;
 }
@@ -89,7 +82,7 @@
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section{
 
-    return [_events count];
+    return [_eventsOnMemory count];
 }
 
 
@@ -101,14 +94,16 @@
     if ([segue.identifier isEqualToString:@"newEvent"]) {
         
         ExpensesViewController *destViewController = segue.destinationViewController;
+        destViewController.event = [_eventsOnMemory lastObject];
         
     } else if ([segue.identifier isEqualToString:@"oldEvent"]) {
        
         
         ExpensesViewController *destViewController = segue.destinationViewController;
         NSIndexPath *indexPath = [self.EventsTable indexPathForSelectedRow];
-        destViewController.event = [_eventsOnMemory objectAtIndex:indexPath.item];
-        NSLog(@"%@", destViewController.event.name);
+        destViewController.event = [_eventsOnMemory objectAtIndex:indexPath.row];
+
+        [_EventsTable deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
  

@@ -18,9 +18,11 @@
 - (Controller *) initWithEvent : (Event*) event;
 
 - (void) addNewSharer: (NSString*) newSharerName;
+- (Sharer*) getSharer: (NSUInteger) row;
 - (void) removeSharer: (Sharer*) sharerToBeRemoved;
 
 - (void) addNewExpense: (NSString*) expenseToBeAdded withValue: (float) value;
+- (Expense*) getExpense: (NSUInteger) row;
 - (void) removeExpense: (Expense*) expenseToBeRemoved;
 
 - (NSMutableArray*) getSharers;

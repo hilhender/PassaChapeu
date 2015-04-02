@@ -32,15 +32,6 @@
 
     
     [text appendString:@"\nDetalhes Pessoa\n"];
-    /* EXEMPLO DE DETALHES PESSOA */
-    [text appendFormat:@"  %@\n", @"Ze da Silva"];
-    [text appendFormat:@"    %@\n", @"Macaron"];
-    [text appendFormat:@"      %-20s R$%.2f\n", "Preco:", 20.00];
-    [text appendFormat:@"      %-20s R$%.2f\n", "Preco por pessoa:", 20.00 / 4];
-    [text appendFormat:@"    %-22s R$%.2f\n", "Valor contribuido:", 30.00];
-    [text appendFormat:@"    %-22s R$%.2f\n", "Valor gasto:", 20.00];
-    [text appendFormat:@"    %-22s R$%.2f\n", "Subtotal:", 30.00 - 20.00];
-    
     
     for (Sharer *sharer in _controller.getSharers) {
         [text appendFormat:@"  %@\n", sharer.name];
@@ -56,14 +47,6 @@
     
     
     [text appendString:@"\nDetalhes Gasto\n"];
-    /* EXEMPLO DE DETALHES GASTO */
-    [text appendFormat:@"  %@\n", @"MACARON"];
-    [text appendFormat:@"    %-22s R$%.2f\n", "Preco:", 30.00];
-    [text appendFormat:@"    %-22s %d\n", "Participantes:", 2];
-    [text appendFormat:@"      %@\n", @"Zé"];
-    [text appendFormat:@"      %@\n", @"José"];
-    [text appendFormat:@"    %-22s R$%.2f\n", "Valor por pessoa:", 30.00 / 2];
-
 
     for (Expense *expense in _controller.getExpenses) {
         [text appendFormat:@"  %@\n", expense.name];

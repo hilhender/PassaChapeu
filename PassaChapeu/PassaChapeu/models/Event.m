@@ -33,6 +33,10 @@
     [self.sharers addObject:sharer];
 }
 
+- (Sharer*) getSharer: (NSUInteger) row {
+    return [_sharers objectAtIndex:row];
+}
+
 /* Remove participante. */
 - (void) removeSharer: (Sharer*) sharer {
     [self.sharers removeObject:sharer];
@@ -41,6 +45,10 @@
 /* Adiciona gasto. */
 - (void) addNewExpense: (Expense*) expense {
     [self.expenses addObject:expense];
+}
+
+- (Expense*) getExpense: (NSUInteger) row {
+    return [_expenses objectAtIndex:row];
 }
 
 /* Remove gasto. */
