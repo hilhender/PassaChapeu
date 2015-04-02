@@ -70,7 +70,7 @@
         balance = contributedValue - totalCost;
         
         /* Exibe. */
-        self.lblInfo.text = @"Valor contribuido:\nTotal:\nSaldo:";
+        self.lblInfo.text = @"Valor contribuido:\n\nTotal:\n\nSaldo:";
         self.lblContributedValue.text = [NSString stringWithFormat:@"%.2f", contributedValue];
         self.lblTotalCost.text = [NSString stringWithFormat:@"%.2f", totalCost];
         self.lblBalance.text = [NSString stringWithFormat:@"%.2f", balance];
@@ -78,6 +78,13 @@
 }
 
 - (void) setSharerInfo : (Sharer*) sharer {
+    
+    /* Quais informacoes a exibir? */
+    [self.lblContributedValue setHidden:YES];
+    [self.lblTotalCost setHidden:NO];
+    [self.lblBalance setHidden:NO];
+    [self.txtContributedValue setHidden:NO];
+
     /* Valores a serem exibidos. */
     float contributedValue, totalCost, balance;
     contributedValue = sharer.contributedValue;
@@ -91,13 +98,19 @@
     }
     
     /* Exibe. */
-    self.lblInfo.text = @"Valor contribuido:\nTotal gastos:\nSaldo:";
+    self.lblInfo.text = @"Valor contribuido:\n\nTotal gastos:\n\nSaldo:";
     self.txtContributedValue.text = [NSString stringWithFormat:@"%.2f", contributedValue];
     self.lblTotalCost.text = [NSString stringWithFormat:@"%.2f", totalCost];
     self.lblBalance.text = [NSString stringWithFormat:@"%.2f", balance];
 }
 
 - (void) setExpenseInfo : (Expense*) expense {
+    
+    /* Quais informacoes a exibir? */
+    [self.lblContributedValue setHidden:YES];
+    [self.lblTotalCost setHidden:NO];
+    [self.lblBalance setHidden:YES];
+    [self.txtContributedValue setHidden:YES];
     
     /* Valores a serem exibidos. */
     float costPerPerson;
@@ -115,7 +128,7 @@
     
     /* Exibe. */
     self.lblInfo.text = @"Gasto por pessoa:";
-    self.lblContributedValue.text = [NSString stringWithFormat:@"R$%.2f", costPerPerson];
+    self.lblTotalCost.text = [NSString stringWithFormat:@"R$%.2f", costPerPerson];
     
 }
 
@@ -291,12 +304,6 @@
             [_tblGastos setAllowsMultipleSelection:YES];
             objectSelectedToBeEdited = sharer;
             
-            /* Quais informacoes a exibir? */
-            [self.lblContributedValue setHidden:YES];
-            [self.lblTotalCost setHidden:NO];
-            [self.lblBalance setHidden:NO];
-            [self.txtContributedValue setHidden:NO];
-            
             [self setSharerInfo:sharer];
         } else {
             /* Estou vinculando pessoas a um gasto. */
@@ -312,12 +319,6 @@
         if (![_tblGastos allowsMultipleSelection]) {
             [_tblPessoas setAllowsMultipleSelection:YES];
             objectSelectedToBeEdited = expense;
-            
-            /* Quais informacoes a exibir? */
-            [self.lblContributedValue setHidden:NO];
-            [self.lblTotalCost setHidden:YES];
-            [self.lblBalance setHidden:YES];
-            [self.txtContributedValue setHidden:YES];
             
             [self setExpenseInfo:expense];
         } else {
