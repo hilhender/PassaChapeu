@@ -10,7 +10,7 @@
 #import "BalancoViewController.h"
 
 
-@interface ExpensesViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface ExpensesViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *lblInfo;
 
@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblBalance;
 @property (weak, nonatomic) IBOutlet UITableView *tblGastos;
 @property (weak, nonatomic) IBOutlet UITableView *tblPessoas;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -28,6 +29,7 @@
 
     //Armazena o objeto (pessoa/gasto) a ser editado
     id objectSelectedToBeEdited;
+    UITextField *activeField;
 }
 
 @synthesize lblEventName;
@@ -35,7 +37,11 @@
 - (void)viewDidLoad {
     _controller = [[Controller alloc] initWithEvent:_event];
     lblEventName.text = _controller.event.name;
-  
+    
+    [self registerForKeyboardNotifications];
+
+    
+    _scrollView.showsVerticalScrollIndicator = NO;
     [self setEventInfo];
     //[_tblGastos addGestureRecognizer:leftSwipeGestureRecognizer];
     
@@ -43,13 +49,13 @@
     [super viewDidLoad];
 }
 
-- (void) swipeLeft : (UITableViewCell* )cell{
-    [self setEventInfo];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) swipeLeft {
+    [self setEventInfo];
 }
 
 - (void)setEventInfo {
@@ -105,8 +111,8 @@
     /* Exibe. */
     self.lblInfo.text = @"Valor contribuido:\n\nTotal gastos:\n\nSaldo:";
     self.txtContributedValue.text = [NSString stringWithFormat:@"%.2f", contributedValue];
-    self.lblTotalCost.text = [NSString stringWithFormat:@"%.2f", totalCost];
-    self.lblBalance.text = [NSString stringWithFormat:@"%.2f", balance];
+    self.lblTotalCost.text = [NSString stringWithFormat:@"R$%.2f", totalCost];
+    self.lblBalance.text = [NSString stringWithFormat:@"R$%.2f", balance];
 }
 
 - (void) setExpenseInfo : (Expense*) expense {
@@ -137,9 +143,12 @@
 
 }
 
+- (IBAction)editingTextBegin:(id)sender {
+    activeField = sender;
+}
+
 - (IBAction)textValueChanged:(id)sender {
-    UITextField *textField = (UITextField*) sender;
-    
+     UITextField *textField = (UITextField*) sender;
     Sharer *sharer = [_controller getSharer:[[_tblPessoas indexPathForSelectedRow] row]];
     sharer.contributedValue = [textField.text floatValue];
 }
@@ -166,7 +175,7 @@
         Expense *newExpense = [[Expense alloc] initWithName:name andValue:cost];
         [_event addNewExpense: newExpense];
         [_tblGastos reloadData];
-        
+
         [self setEventInfo];
     }];
 
@@ -178,6 +187,7 @@
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = NSLocalizedString(@"Insira custo", @"CostExpense");
+        [textField setKeyboardType:UIKeyboardTypePhonePad];
     }];
     
     [self presentViewController:alert animated:YES completion:nil];
@@ -225,9 +235,6 @@
         Sharer* sharer = _event.sharers[indexPath.row];
         cell.textLabel.text = sharer.name;
         
-        UISwipeGestureRecognizer* leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft:cell:)];
-        leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
-        [cell addGestureRecognizer:leftSwipeGestureRecognizer];
 
         return cell;
     }
@@ -270,7 +277,7 @@
         [tableView deselectRowAtIndexPath:indexPath animated:animated];
     }
 }
-/*
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"teste");
     NSUInteger row = [indexPath row];
@@ -287,7 +294,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(3_0) {
     return @"X";
-}*/
+}
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if([tableView isEqual: _tblPessoas]){
@@ -381,6 +388,51 @@
     }
 }
 
+#pragma mark - keyboard
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    Sharer *sharer = [_controller getSharer:[[_tblPessoas indexPathForSelectedRow]row]];
+    [self setSharerInfo:sharer];
+    [textField resignFirstResponder];
+    
+    return TRUE;
+}
+
+- (void)registerForKeyboardNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification {
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    _scrollView.contentInset = contentInsets;
+    _scrollView.scrollIndicatorInsets = contentInsets;
+    
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    // Your app might not need or want this behavior.
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= kbSize.height;
+    if (!CGRectContainsPoint(aRect, activeField.frame.origin) ) {
+        [self.scrollView scrollRectToVisible:activeField.frame animated:YES];
+    }
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification {
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    _scrollView.contentInset = contentInsets;
+    _scrollView.scrollIndicatorInsets = contentInsets;
+}
 
 #pragma mark - Navigation
 
