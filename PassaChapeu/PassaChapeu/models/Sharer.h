@@ -17,9 +17,7 @@
 @property float contributedValue;
 
 + (int) getUniqueIDAssigner;
-
 + (void) uniqueIDAssignerIncrement;
-
 + (void) setUniqueIDAssingerTo:(int) value;
 
 - (Sharer *) initWithName: (NSString*) newSharerName;

@@ -10,7 +10,6 @@
 
 @class Sharer;
 
-
 @interface Expense : NSObject
 @property int uniqueID;
 @property NSString* name;
@@ -18,11 +17,8 @@
 
 @property NSMutableArray* sharers;
 
-
 + (int) getUniqueIDAssigner;
-
 + (void) uniqueIDAssignerIncrement;
-
 + (void) setUniqueIDAssingerTo:(int) value;
 
 - (Expense *) initWithName: (NSString*)name andValue: (float) value;

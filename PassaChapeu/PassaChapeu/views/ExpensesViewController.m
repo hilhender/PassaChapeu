@@ -12,8 +12,8 @@
 
 @interface ExpensesViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *lblEventName;
 @property (weak, nonatomic) IBOutlet UILabel *lblInfo;
-
 @property (weak, nonatomic) IBOutlet UITextField *txtContributedValue;
 @property (weak, nonatomic) IBOutlet UILabel *lblContributedValue;
 @property (weak, nonatomic) IBOutlet UILabel *lblTotalCost;
@@ -32,19 +32,12 @@
     UITextField *activeField;
 }
 
-@synthesize lblEventName;
-
 - (void)viewDidLoad {
-    _controller = [[Controller alloc] initWithEvent:_event];
-    lblEventName.text = _controller.event.name;
-    
+    _lblEventName.text = _controller.event.name;
     [self registerForKeyboardNotifications];
 
-    
     _scrollView.showsVerticalScrollIndicator = NO;
     [self setEventInfo];
-    //[_tblGastos addGestureRecognizer:leftSwipeGestureRecognizer];
-    
     
     [super viewDidLoad];
 }
@@ -58,8 +51,11 @@
     [self setEventInfo];
 }
 
+#pragma mark - Displayed Info
+
+/* Exibe informacoes do evento. */
 - (void)setEventInfo {
-        /* Se nada estiver selecionado. */
+    /* Se nada estiver selecionado. */
     [_tblGastos setAllowsMultipleSelection:NO];
     [_tblPessoas setAllowsMultipleSelection:NO];
     
@@ -67,29 +63,28 @@
     [self deselectAllRows:_tblGastos animated:NO];
     [self deselectAllRows:_tblPessoas animated:NO];
     
-    
-        /* Quais informacoes a exibir? */
-        [self.lblContributedValue setHidden:NO];
-        [self.lblTotalCost setHidden:NO];
-        [self.lblBalance setHidden:NO];
-        [self.txtContributedValue setHidden:YES];
-        
-        /* Valores a serem exibidos. */
-        float contributedValue, totalCost, balance;
-        contributedValue = [self.controller getContributedValue];
-        totalCost = [self.controller getTotalCost];
-        balance = contributedValue - totalCost;
-        
-        /* Exibe. */
-        self.lblInfo.text = @"Valor contribuido:\n\nTotal:\n\nSaldo:";
-        self.lblContributedValue.text = [NSString stringWithFormat:@"R$%.2f", contributedValue];
-        self.lblTotalCost.text = [NSString stringWithFormat:@"R$%.2f", totalCost];
-        self.lblBalance.text = [NSString stringWithFormat:@"R$%.2f", balance];
-    
+    /* Quais informacoes a exibir? */
+    [self.lblContributedValue setHidden:NO];
+    [self.lblTotalCost setHidden:NO];
+    [self.lblBalance setHidden:NO];
+    [self.txtContributedValue setHidden:YES];
+
+    /* Valores a serem exibidos. */
+    float contributedValue, totalCost, balance;
+    contributedValue = [self.controller getContributedValue];
+    totalCost = [self.controller getTotalCost];
+    balance = contributedValue - totalCost;
+
+    /* Exibe. */
+    self.lblInfo.text = @"Valor contribuido:\n\nTotal:\n\nSaldo:";
+    self.lblContributedValue.text = [NSString stringWithFormat:@"R$%.2f", contributedValue];
+    self.lblTotalCost.text = [NSString stringWithFormat:@"R$%.2f", totalCost];
+    self.lblBalance.text = [NSString stringWithFormat:@"R$%.2f", balance];
+
 }
 
+/* Exibe informacoes do participante. */
 - (void) setSharerInfo : (Sharer*) sharer {
-    
     /* Quais informacoes a exibir? */
     [self.lblContributedValue setHidden:YES];
     [self.lblTotalCost setHidden:NO];
@@ -115,14 +110,14 @@
     self.lblBalance.text = [NSString stringWithFormat:@"R$%.2f", balance];
 }
 
+/* Exibe informacoes do pagamento. */
 - (void) setExpenseInfo : (Expense*) expense {
-    
     /* Quais informacoes a exibir? */
     [self.lblContributedValue setHidden:YES];
     [self.lblTotalCost setHidden:NO];
     [self.lblBalance setHidden:YES];
     [self.txtContributedValue setHidden:YES];
-    
+
     /* Valores a serem exibidos. */
     float costPerPerson;
     if (expense.getNumberOfSharers == 0) {
@@ -130,8 +125,7 @@
     } else {
         costPerPerson = expense.value / expense.getNumberOfSharers;
     }
-    
- //   [self deselectAllRows:_tblPessoas animated:NO];
+
     for (Sharer* sharer in expense.sharers) {
         NSUInteger row = [_controller getSharerID:sharer];
         [_tblPessoas selectRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
@@ -142,6 +136,8 @@
     self.lblTotalCost.text = [NSString stringWithFormat:@"R$%.2f", costPerPerson];
 
 }
+
+# pragma mark - Text Field Events
 
 - (IBAction)editingTextBegin:(id)sender {
     activeField = sender;
@@ -155,6 +151,7 @@
 
 #pragma mark - Add Buttons
 
+/* Adiciona novo gasto. */
 - (IBAction)addExpense:(id)sender {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Atenção" message:@"Insira o nome e custo:" preferredStyle:UIAlertControllerStyleAlert];
 
@@ -167,14 +164,27 @@
         /* Implementa o botão OK. */
         UITextField *nameExpense = alert.textFields.firstObject;
         UITextField *costExpense = alert.textFields.lastObject;
-        
+
         NSString *name = nameExpense.text;
         float cost = costExpense.text.floatValue;
         
-        /* Cria nova expense com nome e custo e adiciona ao evento. Recarrega _tblGastos */
-        Expense *newExpense = [[Expense alloc] initWithName:name andValue:cost];
-        [_event addNewExpense: newExpense];
-        [_tblGastos reloadData];
+        
+        /* Verifica se insiro um nome válido. */
+        if (![name compare:@""] || cost == 0) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Atenção" message:@"Dados invalidos!" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                /* Implementa o botao cancelar. */
+            }];
+            
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        } else {
+            /* Cria nova expense com nome e custo e adiciona ao evento. Recarrega _tblGastos */
+            [_controller addNewExpense:name withValue:cost];
+            [_tblGastos reloadData];
+        }
+        
 
         [self setEventInfo];
     }];
@@ -193,6 +203,7 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+/* Adiciona novo participante. */
 - (IBAction)addSharer:(id)sender {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Atenção" message:@"Insira o nome do participante:" preferredStyle:UIAlertControllerStyleAlert];
     
@@ -206,10 +217,21 @@
         UITextField *nameSharer = alert.textFields.firstObject;
         NSString *name = nameSharer.text;
 
-        /* Cria um novo participante com "name", adiciona ao evento e recarrega a Table de participantes */
-        Sharer *newSharer = [[Sharer alloc] initWithName:name];
-        [_event addNewSharer: newSharer];
-        [_tblPessoas reloadData];
+        /* Verifica se insiro um nome válido. */
+        if (![name compare:@""]) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Atenção" message:@"Insira o nome do participante!" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                /* Implementa o botao cancelar. */
+            }];
+            
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        } else {
+            /* Cria um novo participante com "name", adiciona ao evento e recarrega a Table de participantes */
+            [_controller addNewSharer:name];
+            [_tblPessoas reloadData];
+        }
         
         [self setEventInfo];
     }];
@@ -232,7 +254,7 @@
         static NSString *cellIdentifier = @"SharerCell";
         UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier: cellIdentifier forIndexPath:indexPath];
 
-        Sharer* sharer = _event.sharers[indexPath.row];
+        Sharer* sharer = _controller.getSharers[indexPath.row];
         cell.textLabel.text = sharer.name;
         
 
@@ -244,7 +266,8 @@
         static NSString *cellIdentifier = @"ExpensesCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier forIndexPath:indexPath];
         
-        Expense* expense = _event.expenses[indexPath.row];
+        
+        Expense* expense = _controller.getExpenses[indexPath.row];
         cell.textLabel.text = expense.name;
         NSString* valueInString = [NSString stringWithFormat:@"$%.2f", expense.value];
         cell.detailTextLabel.text = valueInString;
@@ -262,25 +285,26 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if([tableView isEqual: _tblPessoas])
-        return [_event.sharers count];
-    
-    if([tableView isEqual: _tblGastos])
-        return [_event.expenses count];
-    
+        return [_controller.getSharers count];
+     else if([tableView isEqual: _tblGastos])
+        return [_controller.getExpenses count];
+
     return 0; //soh pra nao correr o risco de nao retornar nada
 }
 
-#pragma mark - TableViews selection affairs
+#pragma mark - TableViews Selection Affairs
 
+/* Deseleciona todas as linhas de uma tabela. */
 - (void)deselectAllRows:(UITableView *)tableView animated:(BOOL)animated {
     for (NSIndexPath *indexPath in [tableView indexPathsForSelectedRows]) {
         [tableView deselectRowAtIndexPath:indexPath animated:animated];
     }
 }
 
+/* Permite exclusao de linhas. */
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"teste");
     NSUInteger row = [indexPath row];
+
     if([tableView isEqual: _tblPessoas]){
         [_controller removeSharer:[_controller getSharer:row]];
         [_tblPessoas reloadData];
@@ -292,10 +316,12 @@
     [self setEventInfo];
 }
 
+/* Mensagem a ser exibida quando se quer apagar uma linha. */
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(3_0) {
     return @"X";
 }
 
+/* Numa tabela que permite selecao de apenas uma linha, permite a deselecao. */
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if([tableView isEqual: _tblPessoas]){
         if (![_tblPessoas allowsMultipleSelection] && [_tblPessoas indexPathForSelectedRow] == indexPath) {
@@ -329,6 +355,7 @@
     return indexPath;
 }
 
+/* Trata o evento de selecionar uma linha. */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSUInteger section = [indexPath section];
     NSUInteger row = [indexPath row];
@@ -341,7 +368,7 @@
             /* Estou editando uma pessoa. */
             [_tblGastos setAllowsMultipleSelection:YES];
             objectSelectedToBeEdited = sharer;
-            
+
             [self setSharerInfo:sharer];
         } else {
             /* Estou vinculando pessoas a um gasto. */
@@ -353,7 +380,7 @@
     } else if([tableView isEqual: _tblGastos]) {
         /* Se gasto estiver selecionado. */
         Expense *expense = [_controller getExpense:row];
-        
+
         if (![_tblGastos allowsMultipleSelection]) {
             [_tblPessoas setAllowsMultipleSelection:YES];
             objectSelectedToBeEdited = expense;
@@ -370,6 +397,7 @@
     }
 }
 
+/* Trata o evento de deselecionar uma linha. */
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(3_0){
     if([tableView isEqual: _tblPessoas]){
         if (![_tblGastos allowsMultipleSelection] && [_tblPessoas allowsMultipleSelection]){
@@ -388,8 +416,9 @@
     }
 }
 
-#pragma mark - keyboard
+#pragma mark - Keyboard Events
 
+/*  */
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     Sharer *sharer = [_controller getSharer:[[_tblPessoas indexPathForSelectedRow]row]];
     [self setSharerInfo:sharer];
@@ -398,18 +427,15 @@
     return TRUE;
 }
 
+/* Ativa a deteccao de teclado sendo exibido. */
 - (void)registerForKeyboardNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWasShown:)
-                                                 name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillBeHidden:)
-                                                 name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
     
 }
 
-// Called when the UIKeyboardDidShowNotification is sent.
+/* Chamado quando UIKeyboardDidShowNotification foi disparado. */
 - (void)keyboardWasShown:(NSNotification*)aNotification {
     NSDictionary* info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
@@ -427,7 +453,7 @@
     }
 }
 
-// Called when the UIKeyboardWillHideNotification is sent
+/* Chamado quando UIKeyboardWillHideNotification foi disparado. */
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification {
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     _scrollView.contentInset = contentInsets;
