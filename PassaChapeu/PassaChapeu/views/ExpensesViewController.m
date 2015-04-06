@@ -38,7 +38,7 @@
 
     _scrollView.showsVerticalScrollIndicator = NO;
     [self setEventInfo];
-    
+
     [super viewDidLoad];
 }
 
@@ -58,7 +58,7 @@
     /* Se nada estiver selecionado. */
     [_tblGastos setAllowsMultipleSelection:NO];
     [_tblPessoas setAllowsMultipleSelection:NO];
-    
+
     objectSelectedToBeEdited = nil;
     [self deselectAllRows:_tblGastos animated:NO];
     [self deselectAllRows:_tblPessoas animated:NO];
@@ -91,13 +91,15 @@
     [self.lblBalance setHidden:NO];
     [self.txtContributedValue setHidden:NO];
 
+    UITableViewCell *cell = [_tblPessoas cellForRowAtIndexPath:[_tblPessoas indexPathForSelectedRow]];
+    [self setSelectedBackgroudColor:cell];
+
     /* Valores a serem exibidos. */
     float contributedValue, totalCost, balance;
     contributedValue = sharer.contributedValue;
     totalCost = sharer.evaluateBalance;
     balance = contributedValue - totalCost;
     
-   // [self deselectAllRows:_tblGastos animated:NO];
     for (Expense* expense in sharer.expenses) {
         NSUInteger row = [_controller getExpenseID:expense];
         [_tblGastos selectRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
@@ -117,6 +119,9 @@
     [self.lblTotalCost setHidden:NO];
     [self.lblBalance setHidden:YES];
     [self.txtContributedValue setHidden:YES];
+
+    UITableViewCell *cell = [_tblGastos cellForRowAtIndexPath:[_tblGastos indexPathForSelectedRow]];
+    [self setSelectedBackgroudColor:cell];
 
     /* Valores a serem exibidos. */
     float costPerPerson;
@@ -167,8 +172,7 @@
 
         NSString *name = nameExpense.text;
         float cost = costExpense.text.floatValue;
-        
-        
+
         /* Verifica se insiro um nome válido. */
         if (![name compare:@""] || cost == 0) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Atenção" message:@"Dados invalidos!" preferredStyle:UIAlertControllerStyleAlert];
@@ -176,7 +180,7 @@
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
                 /* Implementa o botao cancelar. */
             }];
-            
+
             [alert addAction:cancelAction];
             [self presentViewController:alert animated:YES completion:nil];
         } else {
@@ -184,7 +188,6 @@
             [_controller addNewExpense:name withValue:cost];
             [_tblGastos reloadData];
         }
-        
 
         [self setEventInfo];
     }];
@@ -220,11 +223,11 @@
         /* Verifica se insiro um nome válido. */
         if (![name compare:@""]) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Atenção" message:@"Insira o nome do participante!" preferredStyle:UIAlertControllerStyleAlert];
-            
+
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
                 /* Implementa o botao cancelar. */
             }];
-            
+
             [alert addAction:cancelAction];
             [self presentViewController:alert animated:YES completion:nil];
         } else {
@@ -232,7 +235,7 @@
             [_controller addNewSharer:name];
             [_tblPessoas reloadData];
         }
-        
+
         [self setEventInfo];
     }];
     
@@ -256,7 +259,8 @@
 
         Sharer* sharer = _controller.getSharers[indexPath.row];
         cell.textLabel.text = sharer.name;
-        
+
+        [self setDefaultBackgroudColor:cell];
 
         return cell;
     }
@@ -265,13 +269,15 @@
     else if([tableView isEqual: _tblGastos]){
         static NSString *cellIdentifier = @"ExpensesCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier forIndexPath:indexPath];
-        
-        
+
         Expense* expense = _controller.getExpenses[indexPath.row];
         cell.textLabel.text = expense.name;
+
         NSString* valueInString = [NSString stringWithFormat:@"$%.2f", expense.value];
         cell.detailTextLabel.text = valueInString;
-        
+
+        [self setDefaultBackgroudColor:cell];
+
         UISwipeGestureRecognizer* leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft)];
         leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
         [cell addGestureRecognizer:leftSwipeGestureRecognizer];
@@ -297,6 +303,10 @@
 /* Deseleciona todas as linhas de uma tabela. */
 - (void)deselectAllRows:(UITableView *)tableView animated:(BOOL)animated {
     for (NSIndexPath *indexPath in [tableView indexPathsForSelectedRows]) {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        UIView *bgColorView = [[UIView alloc] init];
+        bgColorView.backgroundColor = [UIColor lightGrayColor];
+        [cell setSelectedBackgroundView:bgColorView];
         [tableView deselectRowAtIndexPath:indexPath animated:animated];
     }
 }
@@ -324,31 +334,29 @@
 /* Numa tabela que permite selecao de apenas uma linha, permite a deselecao. */
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if([tableView isEqual: _tblPessoas]){
-        if (![_tblPessoas allowsMultipleSelection] && [_tblPessoas indexPathForSelectedRow] == indexPath) {
-            [_tblPessoas deselectRowAtIndexPath:indexPath animated:NO];
-            
+        if (![_tblPessoas allowsMultipleSelection]) {
+            [self setDefaultBackgroudColor:[_tblPessoas cellForRowAtIndexPath:[_tblPessoas indexPathForSelectedRow]]];
             [self deselectAllRows:_tblGastos animated:NO];
-            [_tblGastos setAllowsMultipleSelection:NO];
+            if ([_tblPessoas indexPathForSelectedRow] == indexPath) {
+                [_tblPessoas deselectRowAtIndexPath:indexPath animated:NO];
 
-            [self setEventInfo];
-            indexPath = nil;
-        } else {
-            if (![_tblPessoas allowsMultipleSelection]) {
-                [self deselectAllRows:_tblGastos animated:NO];
+                [_tblGastos setAllowsMultipleSelection:NO];
+
+                [self setEventInfo];
+                indexPath = nil;
             }
         }
     } else if([tableView isEqual: _tblGastos]){
-        if (![_tblGastos allowsMultipleSelection] && [_tblGastos indexPathForSelectedRow] == indexPath) {
-            [_tblGastos deselectRowAtIndexPath:indexPath animated:NO];
-            
+        if (![_tblGastos allowsMultipleSelection]) {
+            [self setDefaultBackgroudColor:[_tblGastos cellForRowAtIndexPath:[_tblGastos indexPathForSelectedRow]]];
             [self deselectAllRows:_tblPessoas animated:NO];
-            [_tblPessoas setAllowsMultipleSelection:NO];
-            
-            [self setEventInfo];
-            indexPath = nil;
-        } else {
-            if (![_tblGastos allowsMultipleSelection]) {
-                [self deselectAllRows:_tblPessoas animated:NO];
+            if ([_tblGastos indexPathForSelectedRow] == indexPath) {
+                [_tblGastos deselectRowAtIndexPath:indexPath animated:NO];
+                
+                [_tblPessoas setAllowsMultipleSelection:NO];
+        
+                [self setEventInfo];
+                indexPath = nil;
             }
         }
     }
@@ -384,7 +392,7 @@
         if (![_tblGastos allowsMultipleSelection]) {
             [_tblPessoas setAllowsMultipleSelection:YES];
             objectSelectedToBeEdited = expense;
-            
+
             [self setExpenseInfo:expense];
         } else {
             /* Estou vinculando gastos a uma pessoa. */
@@ -423,7 +431,7 @@
     Sharer *sharer = [_controller getSharer:[[_tblPessoas indexPathForSelectedRow]row]];
     [self setSharerInfo:sharer];
     [textField resignFirstResponder];
-    
+
     return TRUE;
 }
 
@@ -443,7 +451,7 @@
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
     _scrollView.contentInset = contentInsets;
     _scrollView.scrollIndicatorInsets = contentInsets;
-    
+
     // If active text field is hidden by keyboard, scroll it so it's visible
     // Your app might not need or want this behavior.
     CGRect aRect = self.view.frame;
@@ -458,6 +466,20 @@
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     _scrollView.contentInset = contentInsets;
     _scrollView.scrollIndicatorInsets = contentInsets;
+}
+
+#pragma mark - Backgroud Color Cells
+
+- (void) setDefaultBackgroudColor : (UITableViewCell*) cell {
+    UIView *bgColorView = [[UIView alloc] init];
+    bgColorView.backgroundColor = [UIColor lightGrayColor];
+    [cell setSelectedBackgroundView:bgColorView];
+}
+
+- (void) setSelectedBackgroudColor : (UITableViewCell*) cell {
+    UIView *bgColorView = [[UIView alloc] init];
+    bgColorView.backgroundColor = [UIColor redColor];
+    [cell setSelectedBackgroundView:bgColorView];
 }
 
 #pragma mark - Navigation
