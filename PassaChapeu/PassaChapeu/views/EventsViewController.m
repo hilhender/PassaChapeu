@@ -20,17 +20,14 @@
 
 @implementation EventsViewController
 
+
+# pragma mark - ViewController methods
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     //_events = [[NSMutableArray alloc] init];
     _eventsOnMemory = [[NSMutableArray alloc] init];
-    
-    [_eventsOnMemory addObject:[[Event alloc] initWithName:@"Churcao"]];
-    [_eventsOnMemory addObject:[[Event alloc] initWithName:@"Praia"]];
-    [_eventsOnMemory addObject:[[Event alloc] initWithName:@"Macarronada"]];
-    [_eventsOnMemory addObject:[[Event alloc] initWithName:@"Churcao"]];
 
 }
 
