@@ -426,7 +426,7 @@
 
 #pragma mark - Keyboard Events
 
-/*  */
+/* Atualiza informacoes do participante ao mesmo tempo em que edita valor contribuido. */
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     Sharer *sharer = [_controller getSharer:[[_tblPessoas indexPathForSelectedRow]row]];
     [self setSharerInfo:sharer];
