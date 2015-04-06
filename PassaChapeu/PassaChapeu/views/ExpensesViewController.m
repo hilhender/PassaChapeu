@@ -35,12 +35,10 @@
 @synthesize lblEventName;
 
 - (void)viewDidLoad {
-    _controller = [[Controller alloc] initWithEvent:_event];
     lblEventName.text = _controller.event.name;
     
     [self registerForKeyboardNotifications];
 
-    
     _scrollView.showsVerticalScrollIndicator = NO;
     [self setEventInfo];
     //[_tblGastos addGestureRecognizer:leftSwipeGestureRecognizer];
@@ -172,8 +170,7 @@
         float cost = costExpense.text.floatValue;
         
         /* Cria nova expense com nome e custo e adiciona ao evento. Recarrega _tblGastos */
-        Expense *newExpense = [[Expense alloc] initWithName:name andValue:cost];
-        [_event addNewExpense: newExpense];
+        [_controller addNewExpense:name withValue:cost];
         [_tblGastos reloadData];
 
         [self setEventInfo];
@@ -207,8 +204,7 @@
         NSString *name = nameSharer.text;
 
         /* Cria um novo participante com "name", adiciona ao evento e recarrega a Table de participantes */
-        Sharer *newSharer = [[Sharer alloc] initWithName:name];
-        [_event addNewSharer: newSharer];
+        [_controller addNewSharer:name];
         [_tblPessoas reloadData];
         
         [self setEventInfo];
@@ -232,7 +228,7 @@
         static NSString *cellIdentifier = @"SharerCell";
         UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier: cellIdentifier forIndexPath:indexPath];
 
-        Sharer* sharer = _event.sharers[indexPath.row];
+        Sharer* sharer = _controller.getSharers[indexPath.row];
         cell.textLabel.text = sharer.name;
         
 
@@ -244,7 +240,8 @@
         static NSString *cellIdentifier = @"ExpensesCell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier forIndexPath:indexPath];
         
-        Expense* expense = _event.expenses[indexPath.row];
+        
+        Expense* expense = _controller.getExpenses[indexPath.row];
         cell.textLabel.text = expense.name;
         NSString* valueInString = [NSString stringWithFormat:@"$%.2f", expense.value];
         cell.detailTextLabel.text = valueInString;
@@ -262,10 +259,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if([tableView isEqual: _tblPessoas])
-        return [_event.sharers count];
+        return [_controller.getSharers count];
     
     if([tableView isEqual: _tblGastos])
-        return [_event.expenses count];
+        return [_controller.getExpenses count];
     
     return 0; //soh pra nao correr o risco de nao retornar nada
 }

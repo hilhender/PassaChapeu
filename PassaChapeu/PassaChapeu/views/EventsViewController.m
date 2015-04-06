@@ -94,14 +94,13 @@
     if ([segue.identifier isEqualToString:@"newEvent"]) {
         
         ExpensesViewController *destViewController = segue.destinationViewController;
-        destViewController.event = [_eventsOnMemory lastObject];
-        
+        destViewController.controller = [[Controller alloc] initWithEvent:[_eventsOnMemory lastObject]];
+
     } else if ([segue.identifier isEqualToString:@"oldEvent"]) {
-       
-        
+
         ExpensesViewController *destViewController = segue.destinationViewController;
         NSIndexPath *indexPath = [self.EventsTable indexPathForSelectedRow];
-        destViewController.event = [_eventsOnMemory objectAtIndex:indexPath.row];
+        destViewController.controller = [[Controller alloc] initWithEvent:[_eventsOnMemory objectAtIndex:indexPath.row]];
 
         [_EventsTable deselectRowAtIndexPath:indexPath animated:YES];
     }
