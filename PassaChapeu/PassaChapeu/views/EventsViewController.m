@@ -87,7 +87,12 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
         Event *event = _eventsOnMemory[indexPath.row];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"dd/MM/yyyy"];
+
         cell.textLabel.text = event.name;
+        cell.detailTextLabel.text = [dateFormat stringFromDate:event.dateEvent];
+
         return cell;
     }
     return nil;

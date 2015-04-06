@@ -25,6 +25,7 @@
     self.sharers = [NSMutableArray array];
     self.expenses = [NSMutableArray array];
     
+    _dateEvent = [[NSDate alloc] init];
     
     return self;
 }

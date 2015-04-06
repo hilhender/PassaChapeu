@@ -14,6 +14,7 @@
 @interface Event : NSObject
 
 @property NSString* name;
+@property NSDate* dateEvent;
 
 @property NSMutableArray* sharers;
 @property NSMutableArray* expenses;
