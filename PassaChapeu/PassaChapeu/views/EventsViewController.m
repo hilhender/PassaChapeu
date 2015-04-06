@@ -51,10 +51,23 @@
         /* Implementa o botão OK. */
         UITextField *eventName = alert.textFields.firstObject;
         //newEventName = eventName.text;
-        [_eventsOnMemory addObject: [[Event alloc] initWithName: eventName.text]];
-        [self.EventsTable reloadData];
-
-        [self performSegueWithIdentifier:@"newEvent" sender:self];
+        
+        /* Verifica se insiro um nome válido. */
+        if (![eventName.text compare:@""]) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Atenção" message:@"Insira o nome do evento!" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                /* Implementa o botao cancelar. */
+            }];
+            
+            [alert addAction:cancelAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        } else {
+            [_eventsOnMemory insertObject:[[Event alloc] initWithName: eventName.text] atIndex:0];
+            [self.EventsTable reloadData];
+            
+            [self performSegueWithIdentifier:@"newEvent" sender:self];
+        }
     }];
     
     [alert addAction:cancelAction];
@@ -63,28 +76,40 @@
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = NSLocalizedString(@"Nome do Evento", @"EventName");
     }];
-    
+
     [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDataSource required methods
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *CellIdentifier = @"EventCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    Event *event = _eventsOnMemory[indexPath.row];
-    cell.textLabel.text = event.name;
+    if([tableView isEqual: _EventsTable]){
+        static NSString *CellIdentifier = @"EventCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
-    return cell;
+        Event *event = _eventsOnMemory[indexPath.row];
+        cell.textLabel.text = event.name;
+        return cell;
+    }
+    return nil;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section{
-
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [_eventsOnMemory count];
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSUInteger row = [indexPath row];
+
+    if([tableView isEqual: _EventsTable]){
+        [_eventsOnMemory removeObject:[_eventsOnMemory objectAtIndex:row]];
+        [_EventsTable reloadData];
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(3_0) {
+    return @"X";
+}
 
 #pragma mark - Navigation
 
@@ -94,7 +119,7 @@
     if ([segue.identifier isEqualToString:@"newEvent"]) {
         
         ExpensesViewController *destViewController = segue.destinationViewController;
-        destViewController.controller = [[Controller alloc] initWithEvent:[_eventsOnMemory lastObject]];
+        destViewController.controller = [[Controller alloc] initWithEvent:[_eventsOnMemory firstObject]];
 
     } else if ([segue.identifier isEqualToString:@"oldEvent"]) {
 

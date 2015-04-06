@@ -165,10 +165,10 @@
         /* Implementa o botão OK. */
         UITextField *nameExpense = alert.textFields.firstObject;
         UITextField *costExpense = alert.textFields.lastObject;
-        
+
         NSString *name = nameExpense.text;
         float cost = costExpense.text.floatValue;
-        
+
         /* Cria nova expense com nome e custo e adiciona ao evento. Recarrega _tblGastos */
         [_controller addNewExpense:name withValue:cost];
         [_tblGastos reloadData];
@@ -260,10 +260,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if([tableView isEqual: _tblPessoas])
         return [_controller.getSharers count];
-    
-    if([tableView isEqual: _tblGastos])
+     else if([tableView isEqual: _tblGastos])
         return [_controller.getExpenses count];
-    
+
     return 0; //soh pra nao correr o risco de nao retornar nada
 }
 
@@ -276,8 +275,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"teste");
     NSUInteger row = [indexPath row];
+
     if([tableView isEqual: _tblPessoas]){
         [_controller removeSharer:[_controller getSharer:row]];
         [_tblPessoas reloadData];
@@ -338,7 +337,7 @@
             /* Estou editando uma pessoa. */
             [_tblGastos setAllowsMultipleSelection:YES];
             objectSelectedToBeEdited = sharer;
-            
+
             [self setSharerInfo:sharer];
         } else {
             /* Estou vinculando pessoas a um gasto. */
@@ -350,7 +349,7 @@
     } else if([tableView isEqual: _tblGastos]) {
         /* Se gasto estiver selecionado. */
         Expense *expense = [_controller getExpense:row];
-        
+
         if (![_tblGastos allowsMultipleSelection]) {
             [_tblPessoas setAllowsMultipleSelection:YES];
             objectSelectedToBeEdited = expense;
