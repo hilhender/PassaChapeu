@@ -50,7 +50,6 @@
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         /* Implementa o botão OK. */
         UITextField *eventName = alert.textFields.firstObject;
-        //newEventName = eventName.text;
         
         /* Verifica se insiro um nome válido. */
         if (![eventName.text compare:@""]) {

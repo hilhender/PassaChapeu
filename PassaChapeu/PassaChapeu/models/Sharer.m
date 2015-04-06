@@ -31,7 +31,7 @@ static int uniqueIDAssigner;
 
 /* Constructor. */
 - (Sharer *) initWithName:(NSString *)newSharerName {
-    
+
     self.uniqueID = [Sharer getUniqueIDAssigner];
     [Sharer uniqueIDAssignerIncrement];
     
