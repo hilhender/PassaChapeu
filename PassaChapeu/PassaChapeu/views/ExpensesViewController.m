@@ -75,11 +75,17 @@
     totalCost = [self.controller getTotalCost];
     balance = contributedValue - totalCost;
 
+    if (balance < 0) {
+        _lblBalance.textColor = [UIColor redColor];
+    } else {
+        _lblBalance.textColor = [UIColor greenColor];
+    }
+
     /* Exibe. */
     self.lblInfo.text = @"Valor contribuido:\n\nTotal:\n\nSaldo:";
     self.lblContributedValue.text = [NSString stringWithFormat:@"R$%.2f", contributedValue];
     self.lblTotalCost.text = [NSString stringWithFormat:@"R$%.2f", totalCost];
-    self.lblBalance.text = [NSString stringWithFormat:@"R$%.2f", balance];
+    self.lblBalance.text = [NSString stringWithFormat:@"R$%.2f", fabsf(balance)];
 
 }
 
@@ -104,12 +110,18 @@
         NSUInteger row = [_controller getExpenseID:expense];
         [_tblGastos selectRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
     }
-    
+
+    if (balance < 0) {
+        _lblBalance.textColor = [UIColor redColor];
+    } else {
+        _lblBalance.textColor = [UIColor greenColor];
+    }
+
     /* Exibe. */
     self.lblInfo.text = @"Valor contribuido:\n\nTotal gastos:\n\nSaldo:";
     self.txtContributedValue.text = [NSString stringWithFormat:@"%.2f", contributedValue];
     self.lblTotalCost.text = [NSString stringWithFormat:@"R$%.2f", totalCost];
-    self.lblBalance.text = [NSString stringWithFormat:@"R$%.2f", balance];
+    self.lblBalance.text = [NSString stringWithFormat:@"R$%.2f", fabsf(balance)];
 }
 
 /* Exibe informacoes do pagamento. */
@@ -154,6 +166,15 @@
      UITextField *textField = (UITextField*) sender;
     Sharer *sharer = [_controller getSharer:[[_tblPessoas indexPathForSelectedRow] row]];
     sharer.contributedValue = [textField.text floatValue];
+    float balance = sharer.contributedValue - sharer.evaluateBalance;
+    
+    NSLog(@"%f", balance);
+    if (balance < 0) {
+        _lblBalance.textColor = [UIColor redColor];
+    } else {
+        _lblBalance.textColor = [UIColor greenColor];
+    }
+    _lblBalance.text = [NSString stringWithFormat:@"R$%.2f", fabsf(balance)];
 }
 
 #pragma mark - Add Buttons
@@ -202,7 +223,7 @@
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = NSLocalizedString(@"Insira custo", @"CostExpense");
-        [textField setKeyboardType:UIKeyboardTypePhonePad];
+        [textField setKeyboardType:UIKeyboardTypeDecimalPad];
     }];
     
     [self presentViewController:alert animated:YES completion:nil];
