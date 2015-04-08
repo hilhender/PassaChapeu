@@ -37,6 +37,9 @@
     [self registerForKeyboardNotifications];
     
     [self becomeFirstResponder];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.jpg"]];
+    self.tblGastos.backgroundColor = [UIColor clearColor];
+    self.tblPessoas.backgroundColor = [UIColor clearColor];
 
     _scrollView.showsVerticalScrollIndicator = NO;
     [self setEventInfo];
@@ -307,6 +310,7 @@
         Sharer* sharer = _controller.getSharers[indexPath.row];
         cell.textLabel.text = sharer.name;
 
+        cell.backgroundColor = [UIColor clearColor];
         [self setDefaultBackgroudColor:cell];
 
         return cell;
@@ -322,7 +326,8 @@
 
         NSString* valueInString = [NSString stringWithFormat:@"$%.2f", expense.value];
         cell.detailTextLabel.text = valueInString;
-
+        
+        cell.backgroundColor = [UIColor clearColor];
         [self setDefaultBackgroudColor:cell];
 
         UISwipeGestureRecognizer* leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft)];

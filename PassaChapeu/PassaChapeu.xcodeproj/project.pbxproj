@@ -22,6 +22,7 @@
 		F74E52221AC4480800BB5497 /* Expense.m in Sources */ = {isa = PBXBuildFile; fileRef = F74E52211AC4480800BB5497 /* Expense.m */; };
 		F74E52251AC4482200BB5497 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = F74E52241AC4482200BB5497 /* Event.m */; };
 		F74E52281AC4485A00BB5497 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = F74E52271AC4485A00BB5497 /* Controller.m */; };
+		F77139D31AD57A89006F1837 /* texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F77139D21AD57A89006F1837 /* texture.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		F74E52241AC4482200BB5497 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		F74E52261AC4485A00BB5497 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
 		F74E52271AC4485A00BB5497 /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
+		F77139D21AD57A89006F1837 /* texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = texture.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 		F74E51F31AC4470B00BB5497 /* PassaChapeu */ = {
 			isa = PBXGroup;
 			children = (
+				F77139D21AD57A89006F1837 /* texture.jpg */,
 				0A636F2F1ACE0B2100D0D088 /* views */,
 				F74E521A1AC4478B00BB5497 /* models */,
 				F74E52261AC4485A00BB5497 /* Controller.h */,
@@ -256,6 +259,7 @@
 				F74E52001AC4470C00BB5497 /* Main.storyboard in Resources */,
 				F74E52051AC4470C00BB5497 /* LaunchScreen.xib in Resources */,
 				F74E52021AC4470C00BB5497 /* Images.xcassets in Resources */,
+				F77139D31AD57A89006F1837 /* texture.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

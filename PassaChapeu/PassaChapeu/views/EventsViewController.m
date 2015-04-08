@@ -23,6 +23,8 @@
 
 # pragma mark - ViewController methods
 - (void)viewDidLoad {
+    _EventsTable.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.jpg"]];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
@@ -87,6 +89,7 @@
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"dd/MM/yyyy"];
 
+        cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.text = event.name;
         cell.detailTextLabel.text = [dateFormat stringFromDate:event.dateEvent];
 

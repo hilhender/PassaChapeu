@@ -26,6 +26,10 @@
 
 
 - (void)viewDidLoad {
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"texture.jpg"]];
+    self.txtReceipt.backgroundColor = [UIColor clearColor];
+    self.txtReceipt.layer.borderWidth=1.0;
+    self.txtReceipt.layer.borderColor = [[UIColor blackColor] CGColor];
     [super viewDidLoad];
     
     NSMutableAttributedString *text = [[NSMutableAttributedString alloc] init];
@@ -38,7 +42,7 @@
     [text.mutableString appendFormat:@"  %-22s ", "Subtotal:"];
     
     //apenda o valor de subtotal com a cor adequada
-    [self appendFormatedAttributedStringwithValue:_controller.getTotalCost - _controller.getContributedValue toString:text];
+    [self appendFormatedAttributedStringwithValue:_controller.getContributedValue - _controller.getTotalCost toString:text];
     
     
     [text.mutableString appendString:@"\nDetalhes Pessoa\n"];
@@ -55,7 +59,7 @@
         [text.mutableString appendFormat:@"    %-20s ", "Subtotal:"];
         
         //apenda o valor de subtotal com a cor adequada
-        [self appendFormatedAttributedStringwithValue: (sharer.evaluateBalance - sharer.contributedValue) toString:text];
+        [self appendFormatedAttributedStringwithValue: (sharer.contributedValue - sharer.evaluateBalance) toString:text];
     }
     
     
@@ -86,7 +90,8 @@
 - (void) appendFormatedAttributedStringwithValue: (double) value toString: (NSMutableAttributedString*) string{
     NSMutableAttributedString *formatedString = [[NSMutableAttributedString alloc] init];
     
-    [formatedString.mutableString setString: [NSString stringWithFormat: @"R$%.2f\n ", value]];
+    [formatedString.mutableString setString: [NSString stringWithFormat: @"R$%.2f\n ", fabsf(value)]];
+    NSLog(@"%f", value);
     
     if(value < 0)
         [formatedString setAttributes: [NSDictionary dictionaryWithObjects: @[[UIColor redColor],[UIFont fontWithName:@"Courier" size:16]] forKeys: @[NSForegroundColorAttributeName, NSFontAttributeName]] range: NSMakeRange (0, [formatedString length]-1)];
