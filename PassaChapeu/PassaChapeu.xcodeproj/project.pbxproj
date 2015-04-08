@@ -224,6 +224,7 @@
 					};
 					F74E52091AC4470C00BB5497 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 3C6Z78Q5M4;
 						TestTargetID = F74E51F01AC4470B00BB5497;
 					};
 				};

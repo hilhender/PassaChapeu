@@ -35,6 +35,8 @@
 - (void)viewDidLoad {
     _lblEventName.text = _controller.event.name;
     [self registerForKeyboardNotifications];
+    
+    [self becomeFirstResponder];
 
     _scrollView.showsVerticalScrollIndicator = NO;
     [self setEventInfo];
@@ -51,10 +53,27 @@
     [self setEventInfo];
 }
 
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    NSLog(@"NOT IMPLEMENTED. WHY?");
+    UITouch *touch = [[event allTouches] anyObject];
+
+    //Verifique se o seu textField está com o teclado aberto e se o toque foi fora dele.
+    if ([_txtContributedValue isFirstResponder] && [touch view] != _txtContributedValue) {
+        [_txtContributedValue resignFirstResponder];
+    }
+    [super touchesBegan:touches withEvent:event];
+}
+
 #pragma mark - Displayed Info
 
 /* Exibe informacoes do evento. */
 - (void)setEventInfo {
+    [self becomeFirstResponder];
+
     /* Se nada estiver selecionado. */
     [_tblGastos setAllowsMultipleSelection:NO];
     [_tblPessoas setAllowsMultipleSelection:NO];
@@ -91,6 +110,8 @@
 
 /* Exibe informacoes do participante. */
 - (void) setSharerInfo : (Sharer*) sharer {
+    [self becomeFirstResponder];
+
     /* Quais informacoes a exibir? */
     [self.lblContributedValue setHidden:YES];
     [self.lblTotalCost setHidden:NO];
@@ -126,6 +147,8 @@
 
 /* Exibe informacoes do pagamento. */
 - (void) setExpenseInfo : (Expense*) expense {
+    [self becomeFirstResponder];
+
     /* Quais informacoes a exibir? */
     [self.lblContributedValue setHidden:YES];
     [self.lblTotalCost setHidden:NO];
@@ -160,6 +183,7 @@
 
 - (IBAction)editingTextBegin:(id)sender {
     activeField = sender;
+    NSLog(@"saiu");
 }
 
 - (IBAction)textValueChanged:(id)sender {
@@ -168,7 +192,6 @@
     sharer.contributedValue = [textField.text floatValue];
     float balance = sharer.contributedValue - sharer.evaluateBalance;
     
-    NSLog(@"%f", balance);
     if (balance < 0) {
         _lblBalance.textColor = [UIColor redColor];
     } else {
@@ -186,6 +209,7 @@
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancelar", @"Cancel action") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
         /* Implementa o botao cancelar. */
         NSLog(@"Cancel action");
+        
     }];
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK action") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -477,7 +501,7 @@
 
     // If active text field is hidden by keyboard, scroll it so it's visible
     // Your app might not need or want this behavior.
-    CGRect aRect = self.view.frame;
+    CGRect aRect = self.scrollView.frame;
     aRect.size.height -= kbSize.height;
     if (!CGRectContainsPoint(aRect, activeField.frame.origin) ) {
         [self.scrollView scrollRectToVisible:activeField.frame animated:YES];
